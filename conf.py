@@ -10,7 +10,7 @@ import tinkerer.paths
 # **************************************************************
 
 # Change this to the name of your blog
-project = "Jinyuliao's Blog"
+project = "Jinyu Liao's Blog"
 
 # Change this to the tagline of your blog
 tagline = ''
@@ -19,7 +19,7 @@ tagline = ''
 description = ''
 
 # Change this to your name
-author = 'jinyuliao'
+author = 'Jinyu Liao'
 
 # Change this to your copyright string
 copyright = '2017, ' + author
