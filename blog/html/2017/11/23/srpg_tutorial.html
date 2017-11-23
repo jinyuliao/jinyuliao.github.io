@@ -1,17 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0">
-    <channel>
-        <title>Jinyu Liao's Blog</title>
-        <link>https://github.com/jinyuliao/jinyuliao.github.io/</link>
-        <description></description>
-        <language>en-us</language>
-        <pubDate>Thu, 23 Nov 2017 00:00:00 +0800</pubDate>
-        
-        <item>
-            <link>https://github.com/jinyuliao/jinyuliao.github.io/2017/11/23/srpg_tutorial.html</link>
-            <guid>https://github.com/jinyuliao/jinyuliao.github.io/2017/11/23/srpg_tutorial.html</guid>
-            <title><![CDATA[使用UE4制作SRPG]]></title>
-            <description><![CDATA[<h1>使用UE4制作SRPG</h1>
+<!DOCTYPE html><!--[if lt IE 7]>      <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <title>使用UE4制作SRPG &mdash; Jinyu Liao&#39;s Blog</title>
+    <link rel="stylesheet" href="../../../_static/normalize.css" type="text/css">
+    <link rel="stylesheet" href="../../../_static/sphinx.css" type="text/css">
+    <link rel="stylesheet" href="../../../_static/main.css" type="text/css">
+        <link rel="stylesheet" href="../../../_static/tinkerer_rtd.css" type="text/css">
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../../_static/tinkerer_rtd.css" type="text/css" />
+
+    
+
+    
+        <link rel="shortcut icon" href="../../../_static/tinkerer.ico" /><!-- Load modernizr and JQuery -->
+        <script src="../../../_static/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../../_static/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+        <script src="../../../_static/plugins.js"></script>
+        <script src="../../../_static/main.js"></script>
+        <link rel="search" title="Search" href="../../../search.html" /><link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.html" /><script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.6.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        SOURCELINK_SUFFIX: '.txt',
+        HAS_SOURCE:  true
+      };
+    </script><script type="text/javascript" src="../../../_static/underscore.js"></script><script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Adjusts document height if sidebar is taller
+            var documentwrapper = document.getElementsByTagName('article')[0];
+            var sidebar = document.getElementsByTagName('aside')[0];
+
+            if (sidebar.offsetHeight > documentwrapper.offsetHeight)
+            {
+                documentwrapper.style.minHeight = sidebar.offsetHeight + "px";
+            }
+
+            // Scroll to content if on small screen
+            if (screen.width < 480)
+            {
+                $(document).scrollTop(documentwrapper.offsetTop - 44);
+            }
+        });
+    </script></head>
+    <body role="document">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+      <div id="container"><div class="header-container">
+    <header class="wrapper clearfix" role="banner">
+        <div class="title">
+          <h1><a href="../../../index.html">Jinyu Liao&#39;s Blog</a></h1>
+          <h4></h4>
+        </div>
+        <nav role="navigation">
+          <ul>
+            <li class="main-nav">
+              <a href="../../../index.html">Home</a>
+            </li>
+            <li class="quicklink"><div class="rss">
+        <a href="../../../rss.html" title="Subscribe via RSS"><span class="fa fa-lg fa-rss"></span></a>
+    </div></li></ul>
+        </nav>
+    </header>
+</div>
+
+<div class="main-container" role="main"><div class="main wrapper body clearfix"><article><div class="wy-nav-content">
+            <div class="rst-content">
+                <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+                        <div itemprop="articleBody">
+                            <div class="timestamp postmeta">
+            <span>November 23, 2017</span>
+        </div>
+    <div class="section" id="ue4srpg">
+<h1>使用UE4制作SRPG</h1>
 <p>本文不是手把手UE4入门教程，你需要了解UE4的基本运作机制：</p>
 <ul class="simple">
 <li>了解UE4的GameMode，PlayerController，AIController，Character，Actor，Object</li>
@@ -29,7 +111,7 @@
 <li>SRPGPlayerController：继承自PlayerController，代表玩家</li>
 </ul>
 <p>所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过向SRPGAIController发送指令来执行 <strong>移动</strong>， <strong>攻击</strong> 等操作。</p>
-<img alt="../../../_images/controller.png" src="https://github.com/jinyuliao/jinyuliao.github.io/_images/controller.png"/>
+<img alt="../../../_images/controller.png" src="../../../_images/controller.png" />
 <p>这样设计能让逻辑更加清晰易懂，以及让某些功能实现起来更加容易。</p>
 </div>
 <div class="section" id="id1">
@@ -110,7 +192,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 </ul>
 <p>示例：</p>
 <p>假设我们有5个Task:</p>
-<div class="highlight-default"><div class="highlight"><pre><span/>T1：移动到点A
+<div class="highlight-default"><div class="highlight"><pre><span></span>T1：移动到点A
 T2: 移动到点B
 T3：移动到点C，获取某个道具
 T4：移动到点D，获取治疗
@@ -143,21 +225,72 @@ T5：移动到点E，攻击某个敌人
 <blockquote>
 <div>TODO</div></blockquote>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
-<colgroup><col class="label"/><col/></colgroup>
+<colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>大部分情况下只有两个TBPlayer，玩家和AI，如果存在玩家不可操作的友军，那么会出现第三个Player，三个以上比较少见。</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="f2" rules="none">
-<colgroup><col class="label"/><col/></colgroup>
+<colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>比如隐藏 <strong>下一回和</strong> 按钮，禁止选中角色等</td></tr>
 </tbody>
 </table>
 </div>
-]]></description>
-             <pubDate>Thu, 23 Nov 2017 00:00:00 +0800</pubDate>
-        </item>
+</div>
+
+    <div class="postmeta">
+        <div class="author">
+            <span>Posted by Jinyu Liao</span>
+        </div>
+        
+        
+        </div>
     
-    </channel>
-</rss>
+                        </div>
+                        <div class="articleComments">
+                            
+                        </div>
+                    </div>
+                    <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Jinyu Liao.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+                </div>
+            </div></article><aside class="sidebar"><section><div class="widget">
+    <h3>Recent Posts</h3>
+    <ul><li>
+            <a href="#">使用UE4制作SRPG</a>
+        </li></ul>
+</div>
+</section><section><div class="widget">
+    <h3>Categories</h3>
+    <ul></ul>
+</div></section><section><div class="widget">
+    <h3>Tags</h3></div></section><section><div class="widget" id="searchbox" role="search">
+    <h3><a href="#searchbox">Search</a></h3>
+    <form action="../../../search.html" method="get">
+        <input type="text" name="q" />
+        <button type="submit"><span class="fa fa-search"></span></button>
+    </form>
+</div></section></aside></div> <!-- #main --></div> <!-- #main-container -->
+
+        <div class="footer-container" role="contentinfo"></div> <!-- footer-container -->
+
+      </div> <!--! end of #container --><!--[if lt IE 7 ]>
+          <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+          <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+        <![endif]-->
+    </body>
+</html>

@@ -90,79 +90,150 @@
                 <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
                         <div itemprop="articleBody">
                             <div class="timestamp postmeta">
-            <span>November 22, 2017</span>
+            <span>November 23, 2017</span>
         </div>
         <div class="section">
-            <h1><a href="2017/11/22/hello_world.html">Hello World</a></h1>
-<p>Hello World</p>
-<p>one asterisk: <em>text</em> for emphasis (italics),</p>
-<p>two asterisks: <strong>text</strong> for strong emphasis (boldface)</p>
-<p>backquotes: <span class="docutils literal"><span class="pre">text</span></span> for code samples.</p>
-<p><a class="reference external" href="https://github.com/jinyuliao">Link</a></p>
-<div class="section" id="subtitle">
-<h2>Subtitle</h2>
-<p>List 1</p>
+            <h1><a href="2017/11/23/srpg_tutorial.html">使用UE4制作SRPG</a></h1>
+<p>本文不是手把手UE4入门教程，你需要了解UE4的基本运作机制：</p>
 <ul class="simple">
-<li>List</li>
-<li>List</li>
-<li>List</li>
+<li>了解UE4的GameMode，PlayerController，AIController，Character，Actor，Object</li>
+<li>了解UE4的接口(Interface)</li>
+<li>能够编写blueprint代码</li>
+<li>C++不是必须，虽然本文所提供的样例工程是由C++和blueprint混合编写，但大部分功能blueprint都能实现</li>
 </ul>
-<p>List2:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>List</li>
-<li>List</li>
-<li>List</li>
+<p>项目地址： <a class="reference external" href="https://github.com/jinyuliao/SRPGTemplate">SRPGTemplate</a></p>
+<div class="section" id="controller">
+<h2>Controller设置</h2>
+<p>我们定义三个Controller类：</p>
+<ul class="simple">
+<li>SRPGAIController：继承自AIController，用来接收指令，执行特定操作</li>
+<li>SRPGAICommander：继承自AIController，代表真正意义上的AI</li>
+<li>SRPGPlayerController：继承自PlayerController，代表玩家</li>
+</ul>
+<p>所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过向SRPGAIController发送指令来执行 <strong>移动</strong>， <strong>攻击</strong> 等操作。</p>
+<img alt="../../../_images/controller.png" src="_images/controller.png"/>
+<p>这样设计能让逻辑更加清晰易懂，以及让某些功能实现起来更加容易。</p>
+</div>
+<div class="section" id="id1">
+<h2>回合制</h2>
+<p>定义一个TBPlayer(Turn-based player)接口，SRPGPlayerController、SRPGAICommander都实现此接口。</p>
+<p>GameMode维护一个TBPlayer队列，在游戏开始时收集/构造所有的TBPlayer并加入队列。 <a class="footnote-reference" href="#f1" id="id2">[1]</a></p>
+<p>TBPlayer中定义一个OnEnterMyTurn函数，GameMode保存了所有的TBPlayer信息，当进入某个Player的回合时，
+调用TBPlayer::OnEnterMyTurn通知此此Player进行相关操作(移动、攻击、使用技能和物品)，同时对其他Player和相关Character施加约束：</p>
+<ol class="arabic simple">
+<li>如果 <strong>其他Player</strong> 是玩家：隐藏某些UI，禁用某些事件 <a class="footnote-reference" href="#f2" id="id3">[2]</a></li>
+<li>如果 <strong>其他Player</strong> 是AI：禁止它向SRPGAIController发送指令</li>
+<li>对于Character：如果当前Player不是它的操纵着，那么它无法执行任何指令</li>
 </ol>
-</div></blockquote>
-<p>Table</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%"/>
-<col width="50%"/>
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Column1</th>
-<th class="head">Column2</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>row</td>
-<td>row</td>
-</tr>
-</tbody>
-</table>
-<p>Footnote <a class="footnote-reference" href="#id3" id="id1">[1]</a></p>
+<p>通过施加上述约束，使游戏按回合进行。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">note test</p>
+<p class="last">在战场女武神或者XCom2中，即使不在自己的回合，角色也能做出某些行动，比如攻击视野中移动的敌人，
+可以通过修改上述第三条约束，让角色在不是自己回合时做出受限制的行动，这些行动自动触发，无需接收指令</p>
 </div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">warning test</p>
+<p>GameMode提供NextPlayer函数，让Player在执行完相关操作之后结束自己的回合，当所有的Player都完成操作时，游戏的回合数+1。</p>
 </div>
-<p>code:</p>
-<div class="highlight-c++"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span/><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">// do something</span>
-<span class="p">}</span>
+<div class="section" id="id4">
+<h2>网格</h2>
+<p>我的 <a class="reference external" href="https://github.com/jinyuliao/Grid">Grid</a> 插件实现了网格相关的功能，由C++编写，blueprint可以使用、扩展，你也可以选择自己实现。</p>
+<p>主要的功能需求如下：</p>
+<ul class="simple">
+<li>网格查询：根据坐标、中心网格+范围、位置等信息查询相关网格</li>
+<li>网格绘制：将网格信息展现给玩家，Grid插件提供贴花(Decal)和轮廓线(Outline, XCom2-like)两种绘制方式</li>
+<li>基于网格的寻路(Grid-based pathfinding)：给出指定坐标，返回网格数组</li>
+<li>基于网格的运动(Grid-based movement)：让Character沿着网格移动，而不是UE4的默认MoveTo行为(你也可以这么做，XCom2就是例子)</li>
+<li>路线绘制：将移动路线展示给玩家，可以使用decal、Particle System或者其他方法，根据游戏需求而定，Grid插件的PathGuide使用UE4的FPrimitiveDrawInterface(PDI)绘制路线，并可以在起点和中点设置不同的贴花(XCom2-like)</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">如果你自己实现网格相关功能，并且只用blueprint，网格的绘制最好的办法可能是贴花(decal)，Blueprint无法访问PDI接口，没办法直接画线，实现网格轮廓线可能比较麻烦，ProceduralMeshComponent+特殊的材质可能是个办法，但我没有验证过。</p>
+</div>
+</div>
+<div class="section" id="ai">
+<h2>AI</h2>
+<p>定义SRPGTask类，一个SRPGTask代表某个Character可以执行的任务(移动、攻击、使用技能等等)。</p>
+<p>AICommander的逻辑如下：</p>
+<ol class="arabic simple">
+<li>检查是否存在可行动的角色，如果不存在则结束回合，否则执行以下逻辑</li>
+<li>生成所有可控角色的所有可执行的SRPGTask</li>
+<li>评估每个SRPGTask的Utility(Utility的解释见下文)</li>
+<li>根据Utility删除明显不合理的Task</li>
+<li>根据Utility随机选择一个SRPGTask执行</li>
+<li>等待SRPGTask执行完成，然后回到1</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Utility是一个[0,1]的浮点数，用来表示SRPGTask的合理度，0表示及其愚蠢的Task，1表示执行此Task可获得胜利，其他Task的Utility位于此之间。
+Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p>
+</div>
+<p>如何评估Utility：</p>
+<p>SRPGTask提供一个GetExecuteResult函数，获取Task的执行(预测)结果FTaskExecuteResult，包含以下信息：</p>
+<ul class="simple">
+<li>FinalPostion：执行此Task之后，Character的最终位置</li>
+<li>ApplyDamageInfoList：Character能对敌人造成多少伤害</li>
+<li>TakeDamageInfoList：Character可能受到多少伤害</li>
+<li>ApplyHealingInfoList：Character能治疗多少友军</li>
+<li>TakeHealingInfoList：Character能受到多少治疗</li>
+</ul>
+<p>评估函数获取Task的FTaskExecuteResult之后，评估以上信息，返回最终的Utility。</p>
+<p>评估函数的实现可以包含sub-utility，比如PositionUtility，DamageUtility，HealingUtility，分别评估位置、伤害和治疗然后再将它们合并成最终的Utility，样例公式如下：</p>
+<p><span class="docutils literal"><span class="pre">Utility</span> <span class="pre">=</span> <span class="pre">PositionUtility*PositionWeight</span> <span class="pre">+</span> <span class="pre">DamageUtility*DamageWeight</span> <span class="pre">+</span> <span class="pre">HealingUtility*HealingWeight</span></span></p>
+<p>当Character生命值较高时，赋予DamageWeight相对较高的值，使角色倾向于进攻，当Character生命值较低时，赋予PositionWeight和HealingWeight相对较高的值，使角色倾向于逃跑和寻找治疗。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">sub-utility的计算可以自由设计，值域也可以不受限制，但必须保证最终Utility位于[0,1]，确保各个SRPGTask之间是可比较的，如果Task1的Utility大于Task2，那么Task1应该优于Task2。</p>
+</div>
+<p>Utility评估完成后，AICommander要选择其中一个执行，选择的逻辑如下:</p>
+<ul class="simple">
+<li>删除Utility非常低的Task</li>
+<li>对于剩下的SRPGTask，求出它们的Utility之和TotalUtility</li>
+<li>计算出各个Task被选择的概率 Probability = Utility / TotalUtility</li>
+<li>根据计算出来的概率，随机选择一个Task</li>
+</ul>
+<p>示例：</p>
+<p>假设我们有5个Task:</p>
+<div class="highlight-default"><div class="highlight"><pre><span/>T1：移动到点A
+T2: 移动到点B
+T3：移动到点C，获取某个道具
+T4：移动到点D，获取治疗
+T5：移动到点E，攻击某个敌人
 </pre></div>
-</td></tr></table></div>
-<img alt="https://github.com/jinyuliao/Grid/blob/master/docs/images/grid.png?raw=true" src="https://github.com/jinyuliao/Grid/blob/master/docs/images/grid.png?raw=true"/>
-<p>Lorem ipsum <a class="reference internal" href="2017/11/22/hello_world.html#ref" id="id2">[Ref]</a> dolor sit amet.</p>
-<table class="docutils citation" frame="void" id="ref" rules="none">
+</div>
+<ul class="simple">
+<li>评估他们的Utility，分别为U1=0.01, U2=0.1, U3=0.5, U4=0.6, U5=0.8</li>
+<li>T1的Utility为0.01实在太低，我们把T1直接排除，剩下T2,T3,T4,T5</li>
+<li>求出TotalUtility = 0.1 + 0.5 + 0.6 + 0.8 = 2</li>
+<li>算出T2,T3,T4,T5的概率分别为P2 = 0.1/2 = 0.05，P3 = 0.5/2 = 0.25，P4 = 0.6/2 = 0.3，P5 = 0.8/2 = 0.4</li>
+<li>从T2,T3,T4,T5中随机选出一个Task执行，选中T2的概率为5%，T3的概率为25%，T4的概率为30%，T5的概率为40%</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">随机选择一个Task而不是选择最优解是因为如果总是选择最优解会让AI行为看起来很假，有时还会让玩家的SL大法失效，影响游戏体验。</p>
+</div>
+<p>关于Utility更详细的介绍可以参考</p>
+<p><a class="reference external" href="https://www.amazon.com/Game-AI-Pro-Collected-Professionals/dp/1466565969/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1511454480&amp;sr=1-2">Game AI Pro: Collected Wisdom of Game AI Professionals</a></p>
+<blockquote>
+<div><p>Chapter 9  An Introduction to Utility Theory</p>
+<p>Chapter 10 Building Utility Decisions into Your Existing Behavior Tree</p>
+</div></blockquote>
+<p><a class="reference external" href="https://www.amazon.com/Game-AI-Pro-Collected-Professionals/dp/1482254794/ref=sr_1_3?s=books&amp;ie=UTF8&amp;qid=1511454480&amp;sr=1-3">Game AI Pro 2: Collected Wisdom of Game AI Professionals</a></p>
+<blockquote>
+<div>Chapter 3 Dual-Utility Reasoning</div></blockquote>
+</div>
+<div class="section" id="id5">
+<h2>伤害计算</h2>
+<blockquote>
+<div>TODO</div></blockquote>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label"/><col/></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[Ref]</a></td><td>Book or article reference, URL or whatever.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>大部分情况下只有两个TBPlayer，玩家和AI，如果存在玩家不可操作的友军，那么会出现第三个Player，三个以上比较少见。</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
+<table class="docutils footnote" frame="void" id="f2" rules="none">
 <colgroup><col class="label"/><col/></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>footnote</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>比如隐藏 <strong>下一回和</strong> 按钮，禁止选中角色等</td></tr>
 </tbody>
 </table>
 </div>
@@ -172,16 +243,8 @@
         <div class="author">
             <span>Posted by Jinyu Liao</span>
         </div>
-        <div class="categories">
-            <span>
-                Filed under:
-                <a href="categories/tutorial.html">tutorial</a></span>
-        </div>
-        <div class="tags">
-            <span>
-                Tags:
-                <a href="tags/tutorial.html">tutorial</a></span>
-        </div>
+        
+        
         </div><div class="archive_link">
         <a href="archive.html"> &mdash; Blog Archive &mdash; </a>
     </div>
@@ -209,14 +272,14 @@
             </div></article><aside class="sidebar"><section><div class="widget">
     <h3>Recent Posts</h3>
     <ul><li>
-            <a href="2017/11/22/hello_world.html">Hello World</a>
+            <a href="2017/11/23/srpg_tutorial.html">使用UE4制作SRPG</a>
         </li></ul>
 </div>
 </section><section><div class="widget">
     <h3>Categories</h3>
-    <ul><li><a href="categories/tutorial.html">tutorial</a> (1)</li></ul>
+    <ul></ul>
 </div></section><section><div class="widget">
-    <h3>Tags</h3><a href="tags/tutorial.html">tutorial</a> (1)</div></section><section><div class="widget" id="searchbox" role="search">
+    <h3>Tags</h3></div></section><section><div class="widget" id="searchbox" role="search">
     <h3><a href="#searchbox">Search</a></h3>
     <form action="search.html" method="get">
         <input type="text" name="q" />
