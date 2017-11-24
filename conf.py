@@ -4,6 +4,9 @@
 
 import tinkerer
 import tinkerer.paths
+from docutils.parsers.rst.directives.admonitions import BaseAdmonition
+from sphinx.util import compat
+compat.make_admonition = BaseAdmonition
 
 # **************************************************************
 # TODO: Edit the lines below
@@ -32,7 +35,7 @@ website = 'https://github.com/jinyuliao/jinyuliao.github.io'
 # **************************************************************
 
 # Add your Disqus shortname to enable comments powered by Disqus
-disqus_shortname = None
+disqus_shortname = "jinyuliao"
 
 # Change your favicon (new favicon goes in _static directory)
 html_favicon = '_static/tinkerer.ico'
@@ -67,7 +70,7 @@ first_page_title = None
 # **************************************************************
 
 # Add other Sphinx extensions here
-extensions = ['tinkerer.ext.blog', 'tinkerer.ext.disqus']
+extensions = ['tinkerer.ext.blog', 'tinkerer.ext.disqus', 'sphinxcontrib.fancybox']
 
 # Add other template paths here
 templates_path = ['_templates']
@@ -101,3 +104,5 @@ release = tinkerer.__version__
 html_title = project
 html_show_sourcelink = False
 html_add_permalinks = ''
+
+fancybox_thumbnail_width = "800"
