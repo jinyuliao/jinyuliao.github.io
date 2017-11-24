@@ -171,7 +171,7 @@ Utility评估完成后，AICommander使用以下逻辑选择一个Task执行:
 
 像装备、物品、技能树的实现SRPG和普通的RPG并没有很大的区别，这里就不多作赘述了，有很多教程和资料可以参考。
 
-最后，希望此教程对你有所帮助，同时也欢迎各种修改建议 :)
+最后，希望此教程对你有所帮助。 :)
 
 
 .. [#f1] 这个设计应该也适用于RTS，需要注意每个Controller都是一个Actor，当Character特别多时，慎用'GetAllActorsOfClass'。
