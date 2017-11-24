@@ -288,7 +288,7 @@ div.body p.centered {
 
 .footer-container,
 .main aside {
-    border-top: 20px solid #222;
+    border-top: 20px solid #000;
 }
 
 .header-container,
@@ -352,7 +352,7 @@ article {
     line-height: 26px;
 }
 article a {
-    color: #000;
+    color: #9B59B6;
 }
 
 article a:hover {
@@ -364,7 +364,7 @@ article .timestamp {
 }
 
 footer a {
-    color: #fff;
+    color: #9B59B6;
 }
 
 footer a:hover {
@@ -477,9 +477,6 @@ ul.related li { list-style-type: none; text-align: center; }
 
     .header-container,
     .main aside {
-        -webkit-box-shadow: 0 5px 10px #aaa;
-           -moz-box-shadow: 0 5px 10px #aaa;
-                box-shadow: 0 5px 10px #aaa;
     }
 
 /* ============
@@ -4174,10 +4171,10 @@ html {
 body {
 	font-family:"Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
 	font-weight:normal;
-	color:#404040;
+	color:#282828;
 	min-height:100%;
 	overflow-x:hidden;
-	background:#edf0f2
+	background:#282828
 }
 .wy-text-left {
 	text-align:left
