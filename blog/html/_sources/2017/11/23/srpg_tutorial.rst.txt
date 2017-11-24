@@ -23,7 +23,8 @@ Controller设置
 
 示例：
 
-.. fancybox:: images/controller.png
+.. thumbnail:: images/controller.png
+    :group: 1
 
 这样设计能让逻辑更加清晰易懂，以及让某些功能实现起来更加容易。[#f1]_
 
@@ -168,7 +169,8 @@ AIComander逻辑如下：
 
 流程图如下：
 
-.. fancybox:: images/damage_calculation.png
+.. thumbnail:: images/damage_calculation.png
+    :group: 1
 
 后记
 ----
