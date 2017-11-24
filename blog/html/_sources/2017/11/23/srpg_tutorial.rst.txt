@@ -176,7 +176,7 @@ Utility评估完成后，AICommander使用以下逻辑选择一个Task执行:
 
 .. [#f1] 这个设计应该也适用于RTS，需要注意每个Controller都是一个Actor，当Character特别多时，慎用'GetAllActorsOfClass'。
 .. [#f2] 大部分情况下只有两个TBPlayer，玩家和AI，如果存在玩家不可操作的友军，那么会出现第三个Player，三个以上比较少见。
-.. [#f3] 比如隐藏 **下一回和** 按钮，禁止选中角色等
+.. [#f3] 比如隐藏 **下一回合** 按钮，禁止选中角色等
 
 .. _Grid: https://github.com/jinyuliao/Grid
 .. _SRPGTemplate: https://github.com/jinyuliao/SRPGTemplate
