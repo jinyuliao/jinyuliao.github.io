@@ -28,7 +28,7 @@ author = 'Jinyu Liao'
 copyright = '2017, ' + author
 
 # Change this to your blog root URL (required for RSS feed)
-website = 'https://github.com/jinyuliao/jinyuliao.github.io'
+website = 'https://jinyuliao.github.io/blog/html'
 
 # **************************************************************
 # More tweaks you can do
