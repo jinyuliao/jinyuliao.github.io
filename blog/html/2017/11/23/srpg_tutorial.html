@@ -156,6 +156,7 @@
 <li>基于网格的运动(Grid-based movement)：让Character沿着网格移动，而不是UE4的默认MoveTo行为(你也可以这么做，XCom2就是例子)</li>
 <li>路线绘制：将移动路线展示给玩家，可以使用decal、Particle System或者其他方法，根据游戏需求而定，Grid插件的PathGuide使用UE4的FPrimitiveDrawInterface(PDI)绘制路线，并可以在起点和中点设置不同的贴花(XCom2-like)</li>
 </ul>
+<p>网格相关的算法 <a href="#id8"><span class="problematic" id="id9">RedBlobGame_</span></a> 有很详细的解释，这里就不重复造轮子了。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">如果你自己实现网格相关功能，并且只用blueprint，网格的绘制最简单的办法可能是贴花(decal)，Blueprint无法访问PDI接口，没办法直接画线，实现网格轮廓线可能比较麻烦，ProceduralMeshComponent+特殊的材质可能是个办法，但我没有验证过。</p>
@@ -176,7 +177,7 @@
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Utility是一个[0,1]的浮点数，用来表示SRPGTask的合理度，0表示及其愚蠢的Task，1表示执行此Task可获得胜利，其他Task的Utility位于此之间。
+<p class="last">Utility是一个[0,1]的浮点数，用来表示SRPGTask的合理度，0表示十分愚蠢的Task，1表示执行此Task可获得胜利，其他Task的Utility位于此之间。
 Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p>
 </div>
 <div class="admonition note">
@@ -185,7 +186,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 修改上述逻辑5，选择多个SRPGTask，分配给相应的Character并通知它们执行</p>
 </div>
 <div class="section" id="utility">
-<h3>评估Utility</h3>
+<h3>Utility评估</h3>
 <p>SRPGTask提供一个GetExecuteResult函数，获取Task的执行(预测)结果TaskExecuteResult，包含以下信息：</p>
 <ul class="simple">
 <li>FinalPostion：执行此Task之后，Character的最终位置</li>
@@ -200,26 +201,27 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 <p>当Character生命值较高时，赋予DamageWeight相对较高的值，使角色倾向于进攻，当Character生命值较低时，赋予PositionWeight和HealingWeight相对较高的值，使角色倾向于逃跑和寻找治疗。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">sub-utility的计算可以自由设计，值域也可以不受限制，但必须保证最终Utility位于[0,1]，确保各个SRPGTask之间是可比较的，如果Task1的Utility大于Task2的Utility，那么Task1应该优于Task2。</p>
+<p class="last">sub-utility的计算可以自由设计，值域也可以不受限制，但必须保证最终Utility在[0,1]之间，确保各个SRPGTask之间是可比较的，如果Task1的Utility大于Task2的Utility，那么Task1应该优于Task2。</p>
 </div>
 <p>Utility评估完成后，AICommander使用以下逻辑选择一个Task执行:</p>
 <ul class="simple">
-<li>删除Utility非常低的Task</li>
+<li>过滤Utility非常低的Task</li>
 <li>对于剩下的SRPGTask，求出它们的Utility之和TotalUtility</li>
 <li>计算出各个Task被选择的概率 Probability = Utility / TotalUtility</li>
 <li>根据计算出来的概率，随机选择一个Task</li>
 </ul>
-<p>示例：</p>
+<p>AICommander逻辑示例：</p>
 <p>假设我们有5个Task:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>T1：移动到点A
-T2: 移动到点B
-T3：移动到点C，获取某个道具
-T4：移动到点D，获取治疗
-T5：移动到点E，攻击某个敌人
-</pre></div>
-</div>
 <ul class="simple">
-<li>评估他们的Utility，分别为U1=0.01, U2=0.1, U3=0.5, U4=0.6, U5=0.8</li>
+<li>T1：移动到点A</li>
+<li>T2：移动到点B</li>
+<li>T3：移动到点C，获取某个道具</li>
+<li>T4：移动到点D，获取治疗</li>
+<li>T5：移动到点E，攻击某个敌人</li>
+</ul>
+<p>AIComander逻辑如下：</p>
+<ul class="simple">
+<li>评估它们的Utility，分别为U1=0.01, U2=0.1, U3=0.5, U4=0.6, U5=0.8</li>
 <li>T1的Utility为0.01实在太低，我们把T1直接排除，剩下T2,T3,T4,T5</li>
 <li>求出TotalUtility = 0.1 + 0.5 + 0.6 + 0.8 = 2</li>
 <li>算出T2,T3,T4,T5的概率分别为P2 = 0.1/2 = 0.05，P3 = 0.5/2 = 0.25，P4 = 0.6/2 = 0.3，P5 = 0.8/2 = 0.4</li>
@@ -253,7 +255,7 @@ T5：移动到点E，攻击某个敌人
 <li>以类似2、3的步骤计算最终暴击率</li>
 <li>使用随机数判断是否命中、暴击</li>
 <li>如果命中，以类似2、3的步骤计算最终伤害值</li>
-<li>如果暴击，步骤6的结果上加上暴击伤害加成</li>
+<li>如果暴击，在步骤6的结果上加上暴击伤害加成</li>
 <li>如果最终伤害值大于0，使用此数值对目标造成伤害</li>
 </ol>
 <p>流程图如下：</p>
@@ -268,7 +270,7 @@ T5：移动到点E，攻击某个敌人
 <div class="section" id="id7">
 <h2>后记</h2>
 <p>像装备、物品、技能树的实现SRPG和普通的RPG并没有很大的区别，这里就不多作赘述了，有很多教程和资料可以参考。</p>
-<p>最后，希望此教程对你有所帮助。 :)</p>
+<p>最后，希望此教程对你有所帮助:)</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
