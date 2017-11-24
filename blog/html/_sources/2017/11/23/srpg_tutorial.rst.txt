@@ -184,6 +184,5 @@ Utility评估完成后，AICommander使用以下逻辑选择一个Task执行:
 .. _`Game AI Pro 2: Collected Wisdom of Game AI Professionals`: https://www.amazon.com/Game-AI-Pro-Collected-Professionals/dp/1482254794/ref=sr_1_3?s=books&ie=UTF8&qid=1511454480&sr=1-3
 
 .. author:: default
-.. categories:: 教程, UE4
 .. tags:: 教程, UE4
 .. comments::
