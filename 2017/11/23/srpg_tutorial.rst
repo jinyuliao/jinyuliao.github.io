@@ -61,7 +61,7 @@ GameMode提供NextPlayer函数，让Player在执行完相关操作之后结束�
 * 基于网格的运动(Grid-based movement)：让Character沿着网格移动，而不是UE4的默认MoveTo行为(你也可以这么做，XCom2就是例子)
 * 路线绘制：将移动路线展示给玩家，可以使用decal、Particle System或者其他方法，根据游戏需求而定，Grid插件的PathGuide使用UE4的FPrimitiveDrawInterface(PDI)绘制路线，并可以在起点和中点设置不同的贴花(XCom2-like)
 
-网格相关的算法 RedBlobGame_ 有很详细的解释，这里就不重复造轮子了。
+网格相关的算法 RedBlobGames_ 有很详细的解释，这里就不重复造轮子了。
 
 .. note:: 如果你自己实现网格相关功能，并且只用blueprint，网格的绘制最简单的办法可能是贴花(decal)，Blueprint无法访问PDI接口，没办法直接画线，实现网格轮廓线可能比较麻烦，ProceduralMeshComponent+特殊的材质可能是个办法，但我没有验证过。
 
