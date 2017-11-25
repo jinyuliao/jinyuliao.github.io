@@ -10,8 +10,8 @@
 
 项目地址： SRPGTemplate_
 
-Controller设置
---------------
+Controller与Task
+----------------
 
 我们定义三个Controller类：
 
@@ -19,7 +19,13 @@ Controller设置
 * SRPGAICommander：继承自AIController，代表真正意义上的AI
 * SRPGPlayerController：继承自PlayerController，代表玩家
 
-所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过向SRPGAIController发送指令来执行 **移动**， **攻击** 等操作。
+SRPGTask代表Character可以执行的任务，比如：
+
+* 移动到点A
+* 攻击敌人B
+* 移动到点C，然后拾取某个物品
+
+所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过为SRPGAIController分配Task来执行 **移动**， **攻击** 等操作。
 
 示例：
 
@@ -67,8 +73,6 @@ GameMode提供NextPlayer函数，让Player在执行完相关操作之后结束�
 
 AI 
 ---
-
-定义SRPGTask类，一个SRPGTask代表某个Character可以执行的任务(移动、攻击、使用技能等等)。
 
 AICommander的逻辑如下：
 
@@ -120,7 +124,7 @@ AICommander逻辑示例：
 
 * T1：移动到点A
 * T2：移动到点B
-* T3：移动到点C，获取某个道具
+* T3：移动到点C，拾取道具I
 * T4：移动到点D，获取治疗
 * T5：移动到点E，攻击某个敌人
 

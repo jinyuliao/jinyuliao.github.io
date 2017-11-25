@@ -109,17 +109,23 @@
 <li>C++不是必须，虽然本文所提供的样例工程是由C++和blueprint混合编写，但大部分功能blueprint都能实现</li>
 </ul>
 <p>项目地址： <a class="reference external" href="https://github.com/jinyuliao/SRPGTemplate">SRPGTemplate</a></p>
-<div class="section" id="controller">
-<h2>Controller设置</h2>
+<div class="section" id="controllertask">
+<h2>Controller与Task</h2>
 <p>我们定义三个Controller类：</p>
 <ul class="simple">
 <li>SRPGAIController：继承自AIController，用来接收指令，执行特定操作</li>
 <li>SRPGAICommander：继承自AIController，代表真正意义上的AI</li>
 <li>SRPGPlayerController：继承自PlayerController，代表玩家</li>
 </ul>
-<p>所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过向SRPGAIController发送指令来执行 <strong>移动</strong>， <strong>攻击</strong> 等操作。</p>
+<p>SRPGTask代表Character可以执行的任务，比如：</p>
+<ul class="simple">
+<li>移动到点A</li>
+<li>攻击敌人B</li>
+<li>移动到点C，然后拾取某个物品</li>
+</ul>
+<p>所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过为SRPGAIController分配Task来执行 <strong>移动</strong>， <strong>攻击</strong> 等操作。</p>
 <p>示例：</p>
-<a class="" data-lightbox="group-56c9149d-07b6-49b3-a56b-4cc045e2e82f" href="_images/controller1.png" title="" data-title=""><img src="_images/controller1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-34df3135-c837-495d-877d-95120899d153" href="_images/controller1.png" title="" data-title=""><img src="_images/controller1.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>这样设计能让逻辑更加清晰易懂，以及让某些功能实现起来更加容易。<a class="footnote-reference" href="#f1" id="id1">[1]</a></p>
 </div>
 <div class="section" id="id2">
@@ -160,7 +166,6 @@
 </div>
 <div class="section" id="ai">
 <h2>AI</h2>
-<p>定义SRPGTask类，一个SRPGTask代表某个Character可以执行的任务(移动、攻击、使用技能等等)。</p>
 <p>AICommander的逻辑如下：</p>
 <ol class="arabic simple">
 <li>检查是否存在可行动的Character，如果不存在则跳转至7，否则执行2</li>
@@ -211,7 +216,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 <ul class="simple">
 <li>T1：移动到点A</li>
 <li>T2：移动到点B</li>
-<li>T3：移动到点C，获取某个道具</li>
+<li>T3：移动到点C，拾取道具I</li>
 <li>T4：移动到点D，获取治疗</li>
 <li>T5：移动到点E，攻击某个敌人</li>
 </ul>
@@ -255,7 +260,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 <li>如果最终伤害值大于0，使用此数值对目标造成伤害</li>
 </ol>
 <p>流程图如下：</p>
-<a class="" data-lightbox="group-297bf890-41de-42df-a20a-b49f32b577b0" href="_images/damage_calculation1.png" title="" data-title=""><img src="_images/damage_calculation1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-d8802141-2547-4cb6-ba2d-4510fb111cbc" href="_images/damage_calculation1.png" title="" data-title=""><img src="_images/damage_calculation1.png" class="" width="100%" height="auto" alt=""/>
                 </a></div>
 <div class="section" id="id7">
 <h2>后记</h2>
