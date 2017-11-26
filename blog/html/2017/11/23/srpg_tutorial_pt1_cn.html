@@ -15,7 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>使用UE4制作SRPG &mdash; Jinyu Liao&#39;s Blog</title>
+        <title>使用UE4制作SRPG Part1 &mdash; Jinyu Liao&#39;s Blog</title>
     <link rel="stylesheet" href="../../../_static/normalize.css" type="text/css">
     <link rel="stylesheet" href="../../../_static/sphinx.css" type="text/css">
     <link rel="stylesheet" href="../../../_static/main.css" type="text/css">
@@ -99,8 +99,8 @@
                             <div class="timestamp postmeta">
             <span>November 23, 2017</span>
         </div>
-    <div class="section" id="ue4srpg">
-<h1>使用UE4制作SRPG</h1>
+    <div class="section" id="ue4srpg-part1">
+<h1>使用UE4制作SRPG Part1</h1>
 <p>本文不是手把手UE4入门教程，你需要了解UE4的基本运作机制：</p>
 <ul class="simple">
 <li>了解UE4的GameMode，PlayerController，AIController，Character，Actor，Object</li>
@@ -126,7 +126,7 @@
 <p>所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过为SRPGAIController分配Task来执行 <strong>移动</strong>， <strong>攻击</strong> 等操作。</p>
 <p>示例：</p>
 <a class=""
-               data-lightbox="group-34df3135-c837-495d-877d-95120899d153"
+               data-lightbox="group-6c2e38f5-bd54-498f-87aa-01b3fed5b10c"
                href="../../../_images/controller1.png"
                title=""
                data-title=""
@@ -270,7 +270,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 </ol>
 <p>流程图如下：</p>
 <a class=""
-               data-lightbox="group-d8802141-2547-4cb6-ba2d-4510fb111cbc"
+               data-lightbox="group-2351e1f8-4bd2-4df6-bdc6-9c51d5c48383"
                href="../../../_images/damage_calculation1.png"
                title=""
                data-title=""
@@ -279,12 +279,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
                      width="100%"
                      height="auto"
                      alt=""/>
-                </a></div>
-<div class="section" id="id7">
-<h2>后记</h2>
-<p>像装备、物品、技能树的实现SRPG和普通的RPG并没有很大的区别，这里就不多作赘述了，有很多教程和资料可以参考。</p>
-<p>最后，希望此教程对你有所帮助:)</p>
-<table class="docutils footnote" frame="void" id="f1" rules="none">
+                </a><table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>这个设计应该也适用于RTS，需要注意每个Controller都是一个Actor，当Character特别多时，慎用’GetAllActorsOfClass’。</td></tr>
@@ -316,7 +311,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
                 <a href="../../../tags/教程.html">教程</a>, <a href="../../../tags/ue4.html">UE4</a></span>
         </div>
         </div>
-    <div id="disqus_thread"></div><script type="text/javascript">    var disqus_shortname = "jinyuliao";    var disqus_identifier = "2017/11/23/srpg_tutorial";    disqus_thread();</script><noscript>Please enable JavaScript to view the    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <div id="disqus_thread"></div><script type="text/javascript">    var disqus_shortname = "jinyuliao";    var disqus_identifier = "2017/11/23/srpg_tutorial_pt1_cn";    disqus_thread();</script><noscript>Please enable JavaScript to view the    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                         </div>
                         <div class="articleComments">
                             
@@ -340,7 +335,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
             </div></article><aside class="sidebar"><section><div class="widget">
     <h3>Recent Posts</h3>
     <ul><li>
-            <a href="#">使用UE4制作SRPG</a>
+            <a href="#">使用UE4制作SRPG Part1</a>
         </li></ul>
 </div>
 </section><section><div class="widget">
