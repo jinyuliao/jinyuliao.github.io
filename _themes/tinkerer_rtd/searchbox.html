@@ -1,18 +1,9 @@
-{#-
-    boilerplate/searchbox.html
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    Sidebar search box.
-
-    :copyright: Copyright 2011-2017 by Vlad Riscutia and contributors (see
-    CONTRIBUTORS file).
-    :license: FreeBSD, see LICENSE file
--#}
-
-<div class="widget" id="searchbox" role="search">
-    <h3><a href="#searchbox">{{ _('Search') }}</a></h3>
-    <form action="{{ pathto('search') }}" method="get">
-        <input type="text" name="q" />
-        <button type="submit"><span class="fa fa-search"></span></button>
-    </form>
+{%- if builder != 'singlehtml' %}
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="{{ pathto('search') }}" method="get">
+    <input type="text" name="q" placeholder="{{ _('Search') }}" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
+{%- endif %}
