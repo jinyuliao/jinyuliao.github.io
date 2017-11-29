@@ -5576,6 +5576,14 @@ footer span.commit code,footer span.commit .rst-content tt,.rst-content footer s
     background-image: url(../img/GitHub-Mark-64px.png);
 }
 
+.icon.twitter {
+    background-image: url(../img/twitter.png);
+}
+
+.icon.pinterest {
+    background-image: url(../img/pinterest.png);
+}
+
 .social.ul{
     display:inline;
 }
