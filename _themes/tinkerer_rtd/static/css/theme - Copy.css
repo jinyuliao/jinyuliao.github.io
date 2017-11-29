@@ -351,8 +351,6 @@ nav a:hover {
 article {
     font-size: 16px;
     line-height: 26px;
-    background: #edf0f2;
-    background-image: none;
 }
 article a {
     color: #9B59B6;
@@ -507,8 +505,6 @@ ul.related li { list-style-type: none; text-align: center; }
     .main article {
         float: left;
         width: 60%;
-        background: #edf0f2;
-        background-image: none;
     }
 
     .main aside {
