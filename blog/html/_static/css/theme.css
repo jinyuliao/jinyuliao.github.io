@@ -5556,3 +5556,26 @@ footer span.commit code,footer span.commit .rst-content tt,.rst-content footer s
 	src:local("Roboto Slab Bold"),local("RobotoSlab-Bold"),url(../fonts/RobotoSlab-Bold.ttf) format("truetype")
 }
 /*# sourceMappingURL=theme.css.map */
+
+.column-logo {
+	text-align: center;
+}
+
+.column-logo ul li {
+    display:inline;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  display: inline-block;
+  font-family: FontAwesome
+}
+
+.icon.github {
+    background-image: url(../img/GitHub-Mark-64px.png);
+}
+
+.social.ul{
+    display:inline;
+}

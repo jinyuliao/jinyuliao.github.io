@@ -187,4 +187,5 @@ AIComander逻辑如下：
 
 .. author:: default
 .. tags:: 教程, UE4
+.. categories:: UE4 SRPG
 .. comments::
