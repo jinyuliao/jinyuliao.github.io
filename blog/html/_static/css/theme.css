@@ -283,18 +283,19 @@ div.body p.centered {
    =================== */
 
 .header-container {
-    border-bottom: 20px solid #222;
+    border-bottom: 1px solid #000;
 }
 
 .footer-container,
 .main aside {
-    border-top: 20px solid #000;
+    border-top: 20px solid #282828;
 }
 
 .header-container,
 .footer-container,
 .main aside {
-    background: #000;
+    background:#282828;
+    background-image: none;
 }
 
 .title {
@@ -436,7 +437,7 @@ ul.related li { list-style-type: none; text-align: center; }
     nav a {
         float: left;
         width: 27%;
-        height: 28px;
+        height: 55px;
         margin: 0 1.7%;
         padding: 25px 2%;
         margin-bottom: 0;
@@ -4162,7 +4163,8 @@ body {
 	color:#404040;
 	min-height:100%;
 	overflow-x:hidden;
-	background:#edf0f2
+	background:#282828;
+    background-image: url("../img/dark-canvas.gif");
 }
 .wy-text-left {
 	text-align:left
@@ -5558,7 +5560,7 @@ footer span.commit code,footer span.commit .rst-content tt,.rst-content footer s
 /*# sourceMappingURL=theme.css.map */
 
 .column-logo {
-	text-align: center;
+	text-align: left;
 }
 
 .column-logo ul li {
@@ -5566,14 +5568,14 @@ footer span.commit code,footer span.commit .rst-content tt,.rst-content footer s
 }
 
 .icon {
-  width: 64px;
-  height: 64px;
+  width: 32px;
+  height: 32px;
   display: inline-block;
-  font-family: FontAwesome
+  font-family: FontAwesome;
 }
 
 .icon.github {
-    background-image: url(../img/GitHub-Mark-64px.png);
+    background-image: url(../img/github.png);
 }
 
 .icon.twitter {
