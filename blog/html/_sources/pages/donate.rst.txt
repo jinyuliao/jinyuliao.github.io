@@ -19,3 +19,9 @@ WeChat(微信)
 
 .. image:: ../_static/donate/wechat.png
     :align: center
+
+|
+
+.. image:: ../_static/donate/donate.png
+    :height: 0px
+    :width:  0px
