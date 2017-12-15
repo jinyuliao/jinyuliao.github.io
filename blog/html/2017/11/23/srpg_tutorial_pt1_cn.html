@@ -129,7 +129,7 @@
 <p>所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过为SRPGAIController分配Task来执行 <strong>移动</strong>， <strong>攻击</strong> 等操作。</p>
 <p>示例：</p>
 <a class=""
-               data-lightbox="group-31a6206e-57c1-4176-9f2e-86521ade310f"
+               data-lightbox="group-8d2b4052-f21f-4514-8039-b1d602f61878"
                href="../../../_images/controller1.png"
                title=""
                data-title=""
@@ -273,7 +273,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 </ol>
 <p>流程图如下：</p>
 <a class=""
-               data-lightbox="group-59cff149-ea40-4a8e-b1e7-cf0a5f07bf2d"
+               data-lightbox="group-f846d738-ed36-4b53-b2ec-6dcb28cd3ee4"
                href="../../../_images/damage_calculation1.png"
                title=""
                data-title=""
@@ -357,6 +357,8 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 </div></section><section><div class="widget">
     <h3>Recent Posts</h3>
     <ul><li>
+            <a href="../../12/15/ue4_dialogue_system_part2.html">UE4 Dialogue System Part2</a>
+        </li><li>
             <a href="../../12/15/ue4_dialogue_system_part1.html">UE4 Dialogue System Part1</a>
         </li><li>
             <a href="#">使用UE4制作SRPG Part1</a>
@@ -364,11 +366,23 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 </div>
 </section><section><div class="widget">
     <h3>Categories</h3>
-    <ul><li><a href="../../../categories/ue4_dialogue_system.html">UE4 Dialogue System</a> (1)</li><li><a href="../../../categories/ue4_srpg.html">UE4 SRPG</a> (1)</li></ul>
+    <ul><li><a href="../../../categories/ue4_dialogue_system.html">UE4 Dialogue System</a> (2)</li><li><a href="../../../categories/ue4_srpg.html">UE4 SRPG</a> (1)</li></ul>
 </div></section><section><div class="widget">
-    <h3>Tags</h3><a href="../../../tags/tutorial.html">Tutorial</a> (1), <a href="../../../tags/ue4.html">UE4</a> (2), <a href="../../../tags/教程.html">教程</a> (1)</div></section></aside></div> <!-- #main --></div> <!-- #main-container -->
+    <h3>Tags</h3><a href="../../../tags/tutorial.html">Tutorial</a> (2), <a href="../../../tags/ue4.html">UE4</a> (3), <a href="../../../tags/教程.html">教程</a> (1)</div></section></aside></div> <!-- #main --></div> <!-- #main-container -->
 
-        <div class="footer-container" role="contentinfo"></div> <!-- footer-container -->
+        <div class="footer-container" role="contentinfo">
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+			$(this).parent().children().not(".header").slideToggle(200);
+            //$(this).parent().children().not(".header").toggle(200);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+</div> <!-- footer-container -->
 
       </div> <!--! end of #container --><!--[if lt IE 7 ]>
           <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>

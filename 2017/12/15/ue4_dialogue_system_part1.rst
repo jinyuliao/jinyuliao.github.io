@@ -62,7 +62,7 @@ Open YourPorject.sln file, you should see the GenericGraph plugin's files now.
 Step 4
 ------
 
-If compile succussed, open your editor again, right click in your content browser, you can create GenericGraph asset now.
+If compile succeeded, open your editor again, right click in your content browser, you can create GenericGraph asset now.
 
 .. thumbnail:: images/generic_graph_asset.png
 
@@ -71,7 +71,10 @@ Done
 
 That’s all in this part, you have created a project and compiled the GenericGraph plugin, we will add a "DialogueSession" asset in the next part, then say goodbye to c++ and dive into blueprint.
 
+Part2_
+
 .. _GenericGraph: https://github.com/jinyuliao/GenericGraph
+.. _Part2: https://jinyuliao.github.io/blog/html/2017/12/15/ue4_dialogue_system_part2.html
 
 .. author:: default
 .. categories:: UE4 Dialogue System
