@@ -45,7 +45,7 @@ Set the class name to "Placeholder"
 
 Click "Create Class".
 
-Now we create a c++ class: Placeholder, as the name implies, it's a placeholder, we don't need it anymore, we just need a c++ class to generate a c++ project.
+.. note:: Now we create a c++ class: Placeholder, as the name implies, it's a placeholder, we don't need it anymore, we just need a c++ class to generate a c++ project.
 
 Right click your "YourProject.uproject" file, click "Generate Visual Studio project files".
 
@@ -53,7 +53,7 @@ Right click your "YourProject.uproject" file, click "Generate Visual Studio proj
 
 Open YourPorject.sln file, you should see the GenericGraph plugin's files now.
 
-.. thumbnail:: images/sln.png
+.. image:: images/sln.png
 
 **Close your project editor**, then compile the c++ solution(F7).
 

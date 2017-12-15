@@ -90,7 +90,9 @@
     </header>
 </div>
 
-<div class="main-container" role="main"><div class="main wrapper body clearfix"><article><div class="wy-nav-content">
+<div class="main-container" role="main"><div class="main wrapper body clearfix"><article>
+        <!---->
+        <div class="wy-nav-content">
             <div class="rst-content">
                 <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
                         <div itemprop="articleBody">
@@ -113,7 +115,7 @@
 <div class="section" id="step-1">
 <h2>Step 1</h2>
 <p>Create a blueprint project with the TopDown template.</p>
-<a class="" data-lightbox="group-f887bd8e-5ab6-4b74-88b7-e450456c5ec2" href="_images/create_project1.png" title="" data-title=""><img src="_images/create_project1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-8a8e142e-8420-4935-9251-ecc88bb46906" href="_images/create_project1.png" title="" data-title=""><img src="_images/create_project1.png" class="" width="100%" height="auto" alt=""/>
                 </a></div>
 <div class="section" id="step-2">
 <h2>Step 2</h2>
@@ -125,21 +127,24 @@
 <p>In your editor, click “File-&gt;New C++ Class”.</p>
 <img alt="../../../_images/new_cpp.png" src="_images/new_cpp.png"/>
 <p>Click “Next”.</p>
-<a class="" data-lightbox="group-4c7a6cdf-af9a-4667-aada-d792ee39da28" href="_images/class_wizard_011.png" title="" data-title=""><img src="_images/class_wizard_011.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-43482ce5-6dcf-4240-b244-98921c24cfec" href="_images/class_wizard_011.png" title="" data-title=""><img src="_images/class_wizard_011.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>Set the class name to “Placeholder”</p>
-<a class="" data-lightbox="group-7ca6c905-0a98-48af-9a23-c03bf19064eb" href="_images/class_wizard_021.png" title="" data-title=""><img src="_images/class_wizard_021.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-d84703a7-bcce-4728-aa2c-9482d923c8cf" href="_images/class_wizard_021.png" title="" data-title=""><img src="_images/class_wizard_021.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>Click “Create Class”.</p>
-<p>Now we create a c++ class: Placeholder, as the name implies, it’s a placeholder, we don’t need it anymore, we just need a c++ class to generate a c++ project.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Now we create a c++ class: Placeholder, as the name implies, it’s a placeholder, we don’t need it anymore, we just need a c++ class to generate a c++ project.</p>
+</div>
 <p>Right click your “YourProject.uproject” file, click “Generate Visual Studio project files”.</p>
 <img alt="../../../_images/generate_project.png" src="_images/generate_project.png"/>
 <p>Open YourPorject.sln file, you should see the GenericGraph plugin’s files now.</p>
-<a class="" data-lightbox="group-05a01eb4-9c1b-449e-8462-3ee35bbdf9a1" href="_images/sln1.png" title="" data-title=""><img src="_images/sln1.png" class="" width="100%" height="auto" alt=""/>
-                </a><p><strong>Close your project editor</strong>, then compile the c++ solution(F7).</p>
+<img alt="../../../_images/sln.png" src="_images/sln.png"/>
+<p><strong>Close your project editor</strong>, then compile the c++ solution(F7).</p>
 </div>
 <div class="section" id="step-4">
 <h2>Step 4</h2>
 <p>If compile succussed, open your editor again, right click in your content browser, you can create GenericGraph asset now.</p>
-<a class="" data-lightbox="group-59fa8e7b-5b8e-4992-b2ec-1daecc7eca08" href="_images/generic_graph_asset1.png" title="" data-title=""><img src="_images/generic_graph_asset1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-d6ce44ef-0be3-4ed4-86cb-5700c8c59584" href="_images/generic_graph_asset1.png" title="" data-title=""><img src="_images/generic_graph_asset1.png" class="" width="100%" height="auto" alt=""/>
                 </a></div>
 <div class="section" id="done">
 <h2>Done</h2>
@@ -192,7 +197,7 @@
 </ul>
 <p>所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过为SRPGAIController分配Task来执行 <strong>移动</strong>， <strong>攻击</strong> 等操作。</p>
 <p>示例：</p>
-<a class="" data-lightbox="group-965d92d0-d880-4e1e-bfbe-c088d01a6a2c" href="_images/controller1.png" title="" data-title=""><img src="_images/controller1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-2d801c71-bcd7-4a22-9334-dd0760ab0352" href="_images/controller1.png" title="" data-title=""><img src="_images/controller1.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>这样设计能让逻辑更加清晰易懂，以及让某些功能实现起来更加容易。<a class="footnote-reference" href="#f1" id="id1">[1]</a></p>
 </div>
 <div class="section" id="id2">
@@ -327,7 +332,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 <li>如果最终伤害值大于0，使用此数值对目标造成伤害</li>
 </ol>
 <p>流程图如下：</p>
-<a class="" data-lightbox="group-0daf10b8-16e9-4644-b0e5-c12078e31a21" href="_images/damage_calculation1.png" title="" data-title=""><img src="_images/damage_calculation1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-a99d630d-9721-470a-a940-7ed31d4db4ec" href="_images/damage_calculation1.png" title="" data-title=""><img src="_images/damage_calculation1.png" class="" width="100%" height="auto" alt=""/>
                 </a><table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label"/><col/></colgroup>
 <tbody valign="top">
@@ -393,7 +398,8 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 </footer>
 
                 </div>
-            </div></article><aside class="sidebar"><section><div role="search">
+            </div>
+            <!----></article><aside class="sidebar"><section><div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />

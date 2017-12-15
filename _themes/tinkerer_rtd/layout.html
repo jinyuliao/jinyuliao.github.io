@@ -99,7 +99,7 @@
 
 {%- block document -%}
     <article>
-        {%- block relbar1 -%}{{ relbar() }}{% endblock -%}
+        <!-- {%- block relbar1 -%}{{ relbar() }}{% endblock -%} -->
         <div class="wy-nav-content">
             <div class="rst-content">
                 <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -113,7 +113,7 @@
                     {% include "footer.html" %}
                 </div>
             </div>
-            {%- block relbar -%}{{ relbar() }}{%- endblock -%}
+            <!-- {%- block relbar -%}{{ relbar() }}{%- endblock -%} -->
             {%- block comments_section -%}{%- endblock -%}
     </article>
 {%- endblock -%}
