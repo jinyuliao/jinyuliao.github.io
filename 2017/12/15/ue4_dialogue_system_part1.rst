@@ -4,7 +4,9 @@ UE4 Dialogue System Part1
 Introduction
 ------------
 
-This tutorial create a simple dialogue system in UE4 with my GenericGraph_ plugin.
+This tutorial create a Fire Emblem-like dialogue system in UE4 with my GenericGraph_ plugin.
+
+.. image:: https://raw.githubusercontent.com/jinyuliao/GenericGraph/master/docs/images/dialogue/dialogue03.png
 
 Prerequisite:
 

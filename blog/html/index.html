@@ -103,7 +103,8 @@
             <h1><a href="2017/12/15/ue4_dialogue_system_part1.html">UE4 Dialogue System Part1</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction</h2>
-<p>This tutorial create a simple dialogue system in UE4 with my <a class="reference external" href="https://github.com/jinyuliao/GenericGraph">GenericGraph</a> plugin.</p>
+<p>This tutorial create a Fire Emblem-like dialogue system in UE4 with my <a class="reference external" href="https://github.com/jinyuliao/GenericGraph">GenericGraph</a> plugin.</p>
+<img alt="https://raw.githubusercontent.com/jinyuliao/GenericGraph/master/docs/images/dialogue/dialogue03.png" src="https://raw.githubusercontent.com/jinyuliao/GenericGraph/master/docs/images/dialogue/dialogue03.png"/>
 <p>Prerequisite:</p>
 <ul class="simple">
 <li>UE4 version: 4.18.2 or higher</li>
@@ -115,7 +116,7 @@
 <div class="section" id="step-1">
 <h2>Step 1</h2>
 <p>Create a blueprint project with the TopDown template.</p>
-<a class="" data-lightbox="group-d61565e8-acd0-4523-94ef-bd4b8db4e64e" href="_images/create_project1.png" title="" data-title=""><img src="_images/create_project1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-f781a90c-75a1-432e-8155-67cc9fbce103" href="_images/create_project1.png" title="" data-title=""><img src="_images/create_project1.png" class="" width="100%" height="auto" alt=""/>
                 </a></div>
 <div class="section" id="step-2">
 <h2>Step 2</h2>
@@ -127,9 +128,9 @@
 <p>In your editor, click “File-&gt;New C++ Class”.</p>
 <img alt="../../../_images/new_cpp.png" src="_images/new_cpp.png"/>
 <p>Click “Next”.</p>
-<a class="" data-lightbox="group-ce7cdeca-f054-4cd7-aa17-81fa88f7d6ce" href="_images/class_wizard_011.png" title="" data-title=""><img src="_images/class_wizard_011.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-3f1d1f8f-b379-4fb7-b429-a1c25770fa74" href="_images/class_wizard_011.png" title="" data-title=""><img src="_images/class_wizard_011.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>Set the class name to “Placeholder”</p>
-<a class="" data-lightbox="group-aeabeb49-2a4b-4081-ad63-02b5c88da731" href="_images/class_wizard_021.png" title="" data-title=""><img src="_images/class_wizard_021.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-420a4fad-2085-4f33-a8e0-a9597d4fb0b7" href="_images/class_wizard_021.png" title="" data-title=""><img src="_images/class_wizard_021.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>Click “Create Class”.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -144,7 +145,7 @@
 <div class="section" id="step-4">
 <h2>Step 4</h2>
 <p>If compile succussed, open your editor again, right click in your content browser, you can create GenericGraph asset now.</p>
-<a class="" data-lightbox="group-2849ac96-31be-4690-a4e5-47b35cfe149c" href="_images/generic_graph_asset1.png" title="" data-title=""><img src="_images/generic_graph_asset1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-19ac86f1-7cbf-421a-870f-8828505653b7" href="_images/generic_graph_asset1.png" title="" data-title=""><img src="_images/generic_graph_asset1.png" class="" width="100%" height="auto" alt=""/>
                 </a></div>
 <div class="section" id="done">
 <h2>Done</h2>
@@ -197,7 +198,7 @@
 </ul>
 <p>所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过为SRPGAIController分配Task来执行 <strong>移动</strong>， <strong>攻击</strong> 等操作。</p>
 <p>示例：</p>
-<a class="" data-lightbox="group-e8eadf54-28f6-4f9f-bac7-7aa2d4b1d353" href="_images/controller1.png" title="" data-title=""><img src="_images/controller1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-ea1f0ec5-1e66-4247-9bcb-d588bc424776" href="_images/controller1.png" title="" data-title=""><img src="_images/controller1.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>这样设计能让逻辑更加清晰易懂，以及让某些功能实现起来更加容易。<a class="footnote-reference" href="#f1" id="id1">[1]</a></p>
 </div>
 <div class="section" id="id2">
@@ -332,7 +333,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 <li>如果最终伤害值大于0，使用此数值对目标造成伤害</li>
 </ol>
 <p>流程图如下：</p>
-<a class="" data-lightbox="group-bc54ea24-3b10-40ec-bd3a-6d269321b6a5" href="_images/damage_calculation1.png" title="" data-title=""><img src="_images/damage_calculation1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-6f9aa3ae-50de-47f6-9a8c-c7319c1b0d53" href="_images/damage_calculation1.png" title="" data-title=""><img src="_images/damage_calculation1.png" class="" width="100%" height="auto" alt=""/>
                 </a><table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label"/><col/></colgroup>
 <tbody valign="top">
