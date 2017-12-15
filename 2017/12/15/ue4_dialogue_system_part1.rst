@@ -12,7 +12,7 @@ Prerequisite:
 * C++ development enviroment(Visual Studio on Windows or Xcode on Mac)
 * Some experience with UE4, can make simple UI with UMG
 
-In this part, we wiil create project and compile the plugin.
+In this part, we wiil create a demo project and compile the plugin.
 
 Step 1
 ------
