@@ -47,7 +47,7 @@ Set the class name to "Placeholder"
 
 Click "Create Class".
 
-.. note:: Now we create a c++ class: Placeholder, as the name implies, it's a placeholder, we don't need it anymore, we just need a c++ class to generate a c++ project.
+.. note:: Now we have created a c++ class: Placeholder, as the name implies, it's a placeholder, we don't need it anymore, we just need a c++ class to generate a c++ project.
 
 Right click your "YourProject.uproject" file, click "Generate Visual Studio project files".
 
