@@ -95,6 +95,75 @@
                 <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
                         <div itemprop="articleBody">
                             <div class="timestamp postmeta">
+            <span>December 15, 2017</span>
+        </div>
+        <div class="section">
+            <h1><a href="2017/12/15/ue4_dialogue_system_part1.html">UE4 Dialogue System Part1</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction</h2>
+<p>This tutorial create a simple dialogue system in UE4 with my <a class="reference external" href="https://github.com/jinyuliao/GenericGraph">GenericGraph</a> plugin.</p>
+<p>Prerequisite:</p>
+<ul class="simple">
+<li>UE4 version: 4.18.2 or higher</li>
+<li>C++ development enviroment(Visual Studio on Windows or Xcode on Mac)</li>
+<li>Some experience with UE4, can make simple UI with UMG</li>
+</ul>
+<p>In this part, we wiil create project and compile the plugin.</p>
+</div>
+<div class="section" id="step-1">
+<h2>Step 1</h2>
+<p>Create a blueprint project with the TopDown template.</p>
+<a class="" data-lightbox="group-ad8e2aa7-abda-47e2-9d73-8a1c6e1ded47" href="_images/create_project1.png" title="" data-title=""><img src="_images/create_project1.png" class="" width="100%" height="auto" alt=""/>
+                </a></div>
+<div class="section" id="step-2">
+<h2>Step 2</h2>
+<p>Open your porject’s root folder, create a folder named “<strong>Plugins</strong>”, clone <a class="reference external" href="https://github.com/jinyuliao/GenericGraph">GenericGraph</a> into the “<strong>Plugins</strong>” folder.</p>
+<img alt="../../../_images/clone_plugin.png" src="_images/clone_plugin.png"/>
+</div>
+<div class="section" id="step-3">
+<h2>Step 3</h2>
+<p>In your editor, click “File-&gt;New C++ Class”.</p>
+<img alt="../../../_images/new_cpp.png" src="_images/new_cpp.png"/>
+<p>Click “Next”.</p>
+<a class="" data-lightbox="group-d921c40e-333e-4ed6-a47b-636379d4a006" href="_images/class_wizard_011.png" title="" data-title=""><img src="_images/class_wizard_011.png" class="" width="100%" height="auto" alt=""/>
+                </a><p>Set the class name to “Placeholder”</p>
+<a class="" data-lightbox="group-50b4699f-3e26-4f11-ab8b-ce827f4bb23b" href="_images/class_wizard_021.png" title="" data-title=""><img src="_images/class_wizard_021.png" class="" width="100%" height="auto" alt=""/>
+                </a><p>Click “Create Class”.</p>
+<p>Now we create a c++ class: Placeholder, as the name implies, it’s a placeholder, we don’t need it anymore, we just need a c++ class to generate a c++ project.</p>
+<p>Right click your “YourProject.uproject” file, click “Generate Visual Studio project files”.</p>
+<img alt="../../../_images/generate_project.png" src="_images/generate_project.png"/>
+<p>Open YourPorject.sln file, you should see the GenericGraph plugin’s files now.</p>
+<a class="" data-lightbox="group-5a7c73b6-4e1e-4822-837a-b77701ee4d94" href="_images/sln1.png" title="" data-title=""><img src="_images/sln1.png" class="" width="100%" height="auto" alt=""/>
+                </a><p><strong>Close your project editor</strong>, then compile the c++ solution(F7).</p>
+</div>
+<div class="section" id="step-4">
+<h2>Step 4</h2>
+<p>If compile succussed, open your editor again, right click in your content browser, you can create GenericGraph asset now.</p>
+<a class="" data-lightbox="group-72ba39a6-7c2f-48c8-bb40-a4616da6bea8" href="_images/generic_graph_asset1.png" title="" data-title=""><img src="_images/generic_graph_asset1.png" class="" width="100%" height="auto" alt=""/>
+                </a></div>
+<div class="section" id="done">
+<h2>Done</h2>
+<p>That’s all in this part, you have created a project and compiled the GenericGraph plugin, we will add a “DialogueSession” asset in the next part, then say goodbye to c++ and dive into blueprint.</p>
+</div>
+
+        </div>
+        <div class="postmeta">
+        <div class="author">
+            <span>Posted by Jinyu Liao</span>
+        </div>
+        <div class="categories">
+            <span>
+                Filed under:
+                <a href="categories/ue4_dialogue_system.html">UE4 Dialogue System</a></span>
+        </div>
+        <div class="tags">
+            <span>
+                Tags:
+                <a href="tags/ue4.html">UE4</a>, <a href="tags/tutorial.html">Tutorial</a></span>
+        </div>
+        <div class="comments">
+            <a href="https://jinyuliao.github.io/blog/html/2017/12/15/ue4_dialogue_system_part1.html#disqus_thread" data-disqus-identifier="2017/12/15/ue4_dialogue_system_part1">Leave a comment</a>
+        </div></div><div class="separator post_separator"></div><div class="timestamp postmeta">
             <span>November 23, 2017</span>
         </div>
         <div class="section">
@@ -123,7 +192,7 @@
 </ul>
 <p>所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过为SRPGAIController分配Task来执行 <strong>移动</strong>， <strong>攻击</strong> 等操作。</p>
 <p>示例：</p>
-<a class="" data-lightbox="group-ffddfec4-9c20-4615-a403-5cbd290eab90" href="_images/controller1.png" title="" data-title=""><img src="_images/controller1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-7fd21bb2-1c32-46c2-a350-4752ae861b76" href="_images/controller1.png" title="" data-title=""><img src="_images/controller1.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>这样设计能让逻辑更加清晰易懂，以及让某些功能实现起来更加容易。<a class="footnote-reference" href="#f1" id="id1">[1]</a></p>
 </div>
 <div class="section" id="id2">
@@ -258,7 +327,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 <li>如果最终伤害值大于0，使用此数值对目标造成伤害</li>
 </ol>
 <p>流程图如下：</p>
-<a class="" data-lightbox="group-0445bc70-84cf-47bc-8c01-2a2014094e70" href="_images/damage_calculation1.png" title="" data-title=""><img src="_images/damage_calculation1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-758c468c-9a3c-401a-8ff6-bc939a2d4684" href="_images/damage_calculation1.png" title="" data-title=""><img src="_images/damage_calculation1.png" class="" width="100%" height="auto" alt=""/>
                 </a><table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label"/><col/></colgroup>
 <tbody valign="top">
@@ -333,14 +402,16 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 </div></section><section><div class="widget">
     <h3>Recent Posts</h3>
     <ul><li>
+            <a href="2017/12/15/ue4_dialogue_system_part1.html">UE4 Dialogue System Part1</a>
+        </li><li>
             <a href="2017/11/23/srpg_tutorial_pt1_cn.html">使用UE4制作SRPG Part1</a>
         </li></ul>
 </div>
 </section><section><div class="widget">
     <h3>Categories</h3>
-    <ul><li><a href="categories/ue4_srpg.html">UE4 SRPG</a> (1)</li></ul>
+    <ul><li><a href="categories/ue4_dialogue_system.html">UE4 Dialogue System</a> (1)</li><li><a href="categories/ue4_srpg.html">UE4 SRPG</a> (1)</li></ul>
 </div></section><section><div class="widget">
-    <h3>Tags</h3><a href="tags/ue4.html">UE4</a> (1), <a href="tags/教程.html">教程</a> (1)</div></section></aside></div> <!-- #main --></div> <!-- #main-container -->
+    <h3>Tags</h3><a href="tags/tutorial.html">Tutorial</a> (1), <a href="tags/ue4.html">UE4</a> (2), <a href="tags/教程.html">教程</a> (1)</div></section></aside></div> <!-- #main --></div> <!-- #main-container -->
 
         <div class="footer-container" role="contentinfo"></div> <!-- footer-container -->
 

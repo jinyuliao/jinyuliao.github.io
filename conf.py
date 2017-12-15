@@ -104,5 +104,3 @@ release = tinkerer.__version__
 html_title = project
 html_show_sourcelink = False
 html_add_permalinks = ''
-
-fancybox_thumbnail_width = "800"
