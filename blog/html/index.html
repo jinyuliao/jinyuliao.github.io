@@ -127,6 +127,8 @@
 <p>DialogueSessionNode.h</p>
 <div class="highlight-c++"><div class="highlight"><pre><span/><span class="cp">#pragma once</span>
 
+<span class="cp">#pragma once</span>
+
 <span class="cp">#include</span> <span class="cpf">"CoreMinimal.h"</span><span class="cp"/>
 <span class="cp">#include</span> <span class="cpf">"GenericGraphNode.h"</span><span class="cp"/>
 <span class="cp">#include</span> <span class="cpf">"DialogueSessionNode.generated.h"</span><span class="cp"/>
@@ -142,21 +144,22 @@
 <span class="k">class</span> <span class="nc">UDialogueSessionNode</span> <span class="o">:</span> <span class="k">public</span> <span class="n">UGenericGraphNode</span>
 <span class="p">{</span>
     <span class="n">GENERATED_BODY</span><span class="p">()</span>
-
 <span class="k">public</span><span class="o">:</span>
     <span class="n">UDialogueSessionNode</span><span class="p">();</span>
-
-    <span class="k">virtual</span> <span class="n">FText</span> <span class="nf">GetNodeTitle_Implementation</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
-
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">SetNodeTitle_Implementation</span><span class="p">(</span><span class="k">const</span> <span class="n">FText</span><span class="o">&amp;</span> <span class="n">NewTitle</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-
-    <span class="k">virtual</span> <span class="n">FLinearColor</span> <span class="nf">GetBackgroundColor_Implementation</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
 
     <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditDefaultsOnly</span><span class="p">,</span> <span class="n">BlueprintReadOnly</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">"DialogueSession"</span><span class="p">)</span>
     <span class="n">FText</span> <span class="n">Paragraph</span><span class="p">;</span>
 
     <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditDefaultsOnly</span><span class="p">,</span> <span class="n">BlueprintReadOnly</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">"DialogueSession"</span><span class="p">)</span>
     <span class="n">EDialoguerPostion</span> <span class="n">DialoguerPostion</span><span class="p">;</span>
+
+<span class="cp">#if WITH_EDITOR</span>
+    <span class="k">virtual</span> <span class="n">FText</span> <span class="nf">GetNodeTitle</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">SetNodeTitle</span><span class="p">(</span><span class="k">const</span> <span class="n">FText</span><span class="o">&amp;</span> <span class="n">NewTitle</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="n">FLinearColor</span> <span class="nf">GetBackgroundColor</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+<span class="cp">#endif</span>
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -170,25 +173,29 @@
 <span class="p">{</span>
 <span class="cp">#if WITH_EDITORONLY_DATA</span>
     <span class="n">CompatibleGraphType</span> <span class="o">=</span> <span class="n">UDialogueSession</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">();</span>
+
     <span class="n">ContextMenuName</span> <span class="o">=</span> <span class="n">LOCTEXT</span><span class="p">(</span><span class="s">"ConextMenuName"</span><span class="p">,</span> <span class="s">"Dialogue Session Node"</span><span class="p">);</span>
 <span class="cp">#endif</span>
 <span class="p">}</span>
 
-<span class="n">FText</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">GetNodeTitle_Implementation</span><span class="p">()</span> <span class="k">const</span>
+<span class="cp">#if WITH_EDITOR</span>
+
+<span class="n">FText</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">GetNodeTitle</span><span class="p">()</span> <span class="k">const</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="n">Paragraph</span><span class="p">.</span><span class="n">IsEmpty</span><span class="p">()</span> <span class="o">?</span> <span class="n">LOCTEXT</span><span class="p">(</span><span class="s">"EmptyParagraph"</span><span class="p">,</span> <span class="s">"(Empty paragraph)"</span><span class="p">)</span> <span class="o">:</span> <span class="n">Paragraph</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">SetNodeTitle_Implementation</span><span class="p">(</span><span class="k">const</span> <span class="n">FText</span><span class="o">&amp;</span> <span class="n">NewTitle</span><span class="p">)</span>
+<span class="kt">void</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">SetNodeTitle</span><span class="p">(</span><span class="k">const</span> <span class="n">FText</span><span class="o">&amp;</span> <span class="n">NewTitle</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">Paragraph</span> <span class="o">=</span> <span class="n">NewTitle</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">FLinearColor</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">GetBackgroundColor_Implementation</span><span class="p">()</span> <span class="k">const</span>
+<span class="n">FLinearColor</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">GetBackgroundColor</span><span class="p">()</span> <span class="k">const</span>
 <span class="p">{</span>
     <span class="n">UDialogueSession</span><span class="o">*</span> <span class="n">Graph</span> <span class="o">=</span> <span class="n">Cast</span><span class="o">&lt;</span><span class="n">UDialogueSession</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetGraph</span><span class="p">());</span>
+
     <span class="k">if</span> <span class="p">(</span><span class="n">Graph</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">UGenericGraphNode</span><span class="o">::</span><span class="n">GetBackgroundColor_Implementation</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">Super</span><span class="o">::</span><span class="n">GetBackgroundColor</span><span class="p">();</span>
 
     <span class="k">switch</span> <span class="p">(</span><span class="n">DialoguerPostion</span><span class="p">)</span>
     <span class="p">{</span>
@@ -200,6 +207,8 @@
         <span class="k">return</span> <span class="n">FLinearColor</span><span class="o">::</span><span class="n">Black</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
+
+<span class="cp">#endif</span>
 
 <span class="cp">#undef LOCTEXT_NAMESPACE</span>
 </pre></div>
@@ -366,7 +375,7 @@ you can’t pass the Shipping build if your game depends on any editor module.</
 <div class="section" id="step-9">
 <h2>Step 9</h2>
 <p>Compile the solution, open the editor if compile succeeded. right click in your content browser, you can create DialogueSession asset now.</p>
-<a class="" data-lightbox="group-07c52262-96e1-4285-88ec-1e20810b057c" href="_images/dialogue_session_asset1.png" title="" data-title=""><img src="_images/dialogue_session_asset1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-31b4a8c6-b75a-4327-a93d-8c81d636ed8f" href="_images/dialogue_session_asset1.png" title="" data-title=""><img src="_images/dialogue_session_asset1.png" class="" width="100%" height="auto" alt=""/>
                 </a></div>
 <div class="section" id="done">
 <h2>Done</h2>
@@ -417,7 +426,7 @@ you can’t pass the Shipping build if your game depends on any editor module.</
 <div class="section" id="step-1">
 <h2>Step 1</h2>
 <p>Create a blueprint project with the TopDown template.</p>
-<a class="" data-lightbox="group-1178cdd0-4150-47c3-b53f-69d58887e7da" href="_images/create_project1.png" title="" data-title=""><img src="_images/create_project1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-b5877bc3-77a2-4eed-abb7-e607f5b54f74" href="_images/create_project1.png" title="" data-title=""><img src="_images/create_project1.png" class="" width="100%" height="auto" alt=""/>
                 </a></div>
 <div class="section" id="step-2">
 <h2>Step 2</h2>
@@ -429,9 +438,9 @@ you can’t pass the Shipping build if your game depends on any editor module.</
 <p>In your editor, click “File-&gt;New C++ Class”.</p>
 <img alt="../../../_images/new_cpp.png" src="_images/new_cpp.png"/>
 <p>Click “Next”.</p>
-<a class="" data-lightbox="group-40bb2ebf-bd2a-4dc4-891b-24f614230582" href="_images/class_wizard_011.png" title="" data-title=""><img src="_images/class_wizard_011.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-9df2b352-02b6-400f-b6f6-955c33c8084d" href="_images/class_wizard_011.png" title="" data-title=""><img src="_images/class_wizard_011.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>Set the class name to “Placeholder”</p>
-<a class="" data-lightbox="group-899d53ab-9596-4821-b919-e8fd593eb60c" href="_images/class_wizard_021.png" title="" data-title=""><img src="_images/class_wizard_021.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-44cabd2c-47db-4c3c-abf0-2ff60195874f" href="_images/class_wizard_021.png" title="" data-title=""><img src="_images/class_wizard_021.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>Click “Create Class”.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -446,7 +455,7 @@ you can’t pass the Shipping build if your game depends on any editor module.</
 <div class="section" id="step-4">
 <h2>Step 4</h2>
 <p>If compile succeeded, open your editor again, right click in your content browser, you can create GenericGraph asset now.</p>
-<a class="" data-lightbox="group-0c06df5f-b606-4ae0-aa89-c51cecd980ff" href="_images/generic_graph_asset1.png" title="" data-title=""><img src="_images/generic_graph_asset1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-d2f8d879-d25b-479a-a390-df7b6b41fad2" href="_images/generic_graph_asset1.png" title="" data-title=""><img src="_images/generic_graph_asset1.png" class="" width="100%" height="auto" alt=""/>
                 </a></div>
 <div class="section" id="done">
 <h2>Done</h2>
@@ -500,7 +509,7 @@ you can’t pass the Shipping build if your game depends on any editor module.</
 </ul>
 <p>所有Character都由SRPGAIController控制，Player或者AICommander无法直接控制Character，需要通过为SRPGAIController分配Task来执行 <strong>移动</strong>， <strong>攻击</strong> 等操作。</p>
 <p>示例：</p>
-<a class="" data-lightbox="group-8d2b4052-f21f-4514-8039-b1d602f61878" href="_images/controller1.png" title="" data-title=""><img src="_images/controller1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-5131c1a3-d3e9-45d2-ac52-0c9c1edb2fac" href="_images/controller1.png" title="" data-title=""><img src="_images/controller1.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>这样设计能让逻辑更加清晰易懂，以及让某些功能实现起来更加容易。<a class="footnote-reference" href="#f1" id="id1">[1]</a></p>
 </div>
 <div class="section" id="id2">
@@ -635,7 +644,7 @@ Utility的评估函数直接影响AI的行为，是实现合理AI的关键。</p
 <li>如果最终伤害值大于0，使用此数值对目标造成伤害</li>
 </ol>
 <p>流程图如下：</p>
-<a class="" data-lightbox="group-f846d738-ed36-4b53-b2ec-6dcb28cd3ee4" href="_images/damage_calculation1.png" title="" data-title=""><img src="_images/damage_calculation1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-586ed617-c3f0-4e2a-bbb2-c63df3106a58" href="_images/damage_calculation1.png" title="" data-title=""><img src="_images/damage_calculation1.png" class="" width="100%" height="auto" alt=""/>
                 </a><table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label"/><col/></colgroup>
 <tbody valign="top">

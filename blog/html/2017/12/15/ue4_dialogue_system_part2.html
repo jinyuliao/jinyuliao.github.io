@@ -130,6 +130,8 @@
 <p>DialogueSessionNode.h</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
 
+<span class="cp">#pragma once</span>
+
 <span class="cp">#include</span> <span class="cpf">&quot;CoreMinimal.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;GenericGraphNode.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;DialogueSessionNode.generated.h&quot;</span><span class="cp"></span>
@@ -145,21 +147,22 @@
 <span class="k">class</span> <span class="nc">UDialogueSessionNode</span> <span class="o">:</span> <span class="k">public</span> <span class="n">UGenericGraphNode</span>
 <span class="p">{</span>
     <span class="n">GENERATED_BODY</span><span class="p">()</span>
-
 <span class="k">public</span><span class="o">:</span>
     <span class="n">UDialogueSessionNode</span><span class="p">();</span>
-
-    <span class="k">virtual</span> <span class="n">FText</span> <span class="nf">GetNodeTitle_Implementation</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
-
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">SetNodeTitle_Implementation</span><span class="p">(</span><span class="k">const</span> <span class="n">FText</span><span class="o">&amp;</span> <span class="n">NewTitle</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-
-    <span class="k">virtual</span> <span class="n">FLinearColor</span> <span class="nf">GetBackgroundColor_Implementation</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
 
     <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditDefaultsOnly</span><span class="p">,</span> <span class="n">BlueprintReadOnly</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">&quot;DialogueSession&quot;</span><span class="p">)</span>
     <span class="n">FText</span> <span class="n">Paragraph</span><span class="p">;</span>
 
     <span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditDefaultsOnly</span><span class="p">,</span> <span class="n">BlueprintReadOnly</span><span class="p">,</span> <span class="n">Category</span> <span class="o">=</span> <span class="s">&quot;DialogueSession&quot;</span><span class="p">)</span>
     <span class="n">EDialoguerPostion</span> <span class="n">DialoguerPostion</span><span class="p">;</span>
+
+<span class="cp">#if WITH_EDITOR</span>
+    <span class="k">virtual</span> <span class="n">FText</span> <span class="nf">GetNodeTitle</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">SetNodeTitle</span><span class="p">(</span><span class="k">const</span> <span class="n">FText</span><span class="o">&amp;</span> <span class="n">NewTitle</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="n">FLinearColor</span> <span class="nf">GetBackgroundColor</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+<span class="cp">#endif</span>
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -173,25 +176,29 @@
 <span class="p">{</span>
 <span class="cp">#if WITH_EDITORONLY_DATA</span>
     <span class="n">CompatibleGraphType</span> <span class="o">=</span> <span class="n">UDialogueSession</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">();</span>
+
     <span class="n">ContextMenuName</span> <span class="o">=</span> <span class="n">LOCTEXT</span><span class="p">(</span><span class="s">&quot;ConextMenuName&quot;</span><span class="p">,</span> <span class="s">&quot;Dialogue Session Node&quot;</span><span class="p">);</span>
 <span class="cp">#endif</span>
 <span class="p">}</span>
 
-<span class="n">FText</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">GetNodeTitle_Implementation</span><span class="p">()</span> <span class="k">const</span>
+<span class="cp">#if WITH_EDITOR</span>
+
+<span class="n">FText</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">GetNodeTitle</span><span class="p">()</span> <span class="k">const</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="n">Paragraph</span><span class="p">.</span><span class="n">IsEmpty</span><span class="p">()</span> <span class="o">?</span> <span class="n">LOCTEXT</span><span class="p">(</span><span class="s">&quot;EmptyParagraph&quot;</span><span class="p">,</span> <span class="s">&quot;(Empty paragraph)&quot;</span><span class="p">)</span> <span class="o">:</span> <span class="n">Paragraph</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">SetNodeTitle_Implementation</span><span class="p">(</span><span class="k">const</span> <span class="n">FText</span><span class="o">&amp;</span> <span class="n">NewTitle</span><span class="p">)</span>
+<span class="kt">void</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">SetNodeTitle</span><span class="p">(</span><span class="k">const</span> <span class="n">FText</span><span class="o">&amp;</span> <span class="n">NewTitle</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">Paragraph</span> <span class="o">=</span> <span class="n">NewTitle</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">FLinearColor</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">GetBackgroundColor_Implementation</span><span class="p">()</span> <span class="k">const</span>
+<span class="n">FLinearColor</span> <span class="n">UDialogueSessionNode</span><span class="o">::</span><span class="n">GetBackgroundColor</span><span class="p">()</span> <span class="k">const</span>
 <span class="p">{</span>
     <span class="n">UDialogueSession</span><span class="o">*</span> <span class="n">Graph</span> <span class="o">=</span> <span class="n">Cast</span><span class="o">&lt;</span><span class="n">UDialogueSession</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetGraph</span><span class="p">());</span>
+
     <span class="k">if</span> <span class="p">(</span><span class="n">Graph</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">UGenericGraphNode</span><span class="o">::</span><span class="n">GetBackgroundColor_Implementation</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">Super</span><span class="o">::</span><span class="n">GetBackgroundColor</span><span class="p">();</span>
 
     <span class="k">switch</span> <span class="p">(</span><span class="n">DialoguerPostion</span><span class="p">)</span>
     <span class="p">{</span>
@@ -203,6 +210,8 @@
         <span class="k">return</span> <span class="n">FLinearColor</span><span class="o">::</span><span class="n">Black</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
+
+<span class="cp">#endif</span>
 
 <span class="cp">#undef LOCTEXT_NAMESPACE</span>
 </pre></div>
@@ -370,7 +379,7 @@ you can’t pass the Shipping build if your game depends on any editor module.</
 <h2>Step 9</h2>
 <p>Compile the solution, open the editor if compile succeeded. right click in your content browser, you can create DialogueSession asset now.</p>
 <a class=""
-               data-lightbox="group-07c52262-96e1-4285-88ec-1e20810b057c"
+               data-lightbox="group-31b4a8c6-b75a-4327-a93d-8c81d636ed8f"
                href="../../../_images/dialogue_session_asset1.png"
                title=""
                data-title=""

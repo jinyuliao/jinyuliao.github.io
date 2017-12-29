@@ -37,6 +37,8 @@ DialogueSessionNode.h
 
     #pragma once
 
+    #pragma once
+
     #include "CoreMinimal.h"
     #include "GenericGraphNode.h"
     #include "DialogueSessionNode.generated.h"
@@ -52,21 +54,22 @@ DialogueSessionNode.h
     class UDialogueSessionNode : public UGenericGraphNode
     {
         GENERATED_BODY()
-
     public:
         UDialogueSessionNode();
-
-        virtual FText GetNodeTitle_Implementation() const override;
-
-        virtual void SetNodeTitle_Implementation(const FText& NewTitle) override;
-
-        virtual FLinearColor GetBackgroundColor_Implementation() const override;
 
         UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "DialogueSession")
         FText Paragraph;
 
         UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "DialogueSession")
         EDialoguerPostion DialoguerPostion;
+
+    #if WITH_EDITOR
+        virtual FText GetNodeTitle() const override;
+
+        virtual void SetNodeTitle(const FText& NewTitle) override;
+
+        virtual FLinearColor GetBackgroundColor() const override;
+    #endif
     };
 
 DialogueSessionNode.cpp
@@ -82,25 +85,29 @@ DialogueSessionNode.cpp
     {
     #if WITH_EDITORONLY_DATA
         CompatibleGraphType = UDialogueSession::StaticClass();
+
         ContextMenuName = LOCTEXT("ConextMenuName", "Dialogue Session Node");
     #endif
     }
 
-    FText UDialogueSessionNode::GetNodeTitle_Implementation() const
+    #if WITH_EDITOR
+
+    FText UDialogueSessionNode::GetNodeTitle() const
     {
         return Paragraph.IsEmpty() ? LOCTEXT("EmptyParagraph", "(Empty paragraph)") : Paragraph;
     }
 
-    void UDialogueSessionNode::SetNodeTitle_Implementation(const FText& NewTitle)
+    void UDialogueSessionNode::SetNodeTitle(const FText& NewTitle)
     {
         Paragraph = NewTitle;
     }
 
-    FLinearColor UDialogueSessionNode::GetBackgroundColor_Implementation() const
+    FLinearColor UDialogueSessionNode::GetBackgroundColor() const
     {
         UDialogueSession* Graph = Cast<UDialogueSession>(GetGraph());
+
         if (Graph == nullptr)
-            return UGenericGraphNode::GetBackgroundColor_Implementation();
+            return Super::GetBackgroundColor();
 
         switch (DialoguerPostion)
         {
@@ -112,6 +119,8 @@ DialogueSessionNode.cpp
             return FLinearColor::Black;
         }
     }
+
+    #endif
 
     #undef LOCTEXT_NAMESPACE
 
