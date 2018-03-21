@@ -99,6 +99,8 @@ Step 9
 
 Play. move character to the position of test trigger, now you can see the dialogue widget. press **N** goto the next paragraph.
 
+.. thumbnail:: images/part3_final.png
+
 Done
 ----
 
