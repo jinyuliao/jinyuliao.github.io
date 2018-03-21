@@ -3,6 +3,8 @@ UE4 Dialogue System Part3
 
 Part2_
 
+**Tutorial Project**: Tutorial_DialogueSystem_
+
 In this part, we will create a dialogue widget which use DialogueSession asset as input to display dialogue on screen.
 
 .. thumbnail:: images/dialogue_session_to_screen.png
@@ -103,6 +105,7 @@ Done
 That’s all in this part. In the next part, we wiil support dialoguer information such as: name, portrait image.
 
 .. _Part2: https://jinyuliao.github.io/blog/html/2017/12/15/ue4_dialogue_system_part2.html
+.. _Tutorial_DialogueSystem: https://github.com/jinyuliao/Tutorial_DialogueSystem
 
 .. author:: default
 .. categories:: UE4 Dialogue System

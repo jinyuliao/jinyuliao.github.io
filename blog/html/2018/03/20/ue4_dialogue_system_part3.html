@@ -105,9 +105,10 @@
     <div class="section" id="ue4-dialogue-system-part3">
 <h1>UE4 Dialogue System Part3</h1>
 <p><a class="reference external" href="https://jinyuliao.github.io/blog/html/2017/12/15/ue4_dialogue_system_part2.html">Part2</a></p>
+<p><strong>Tutorial Project</strong>: <a class="reference external" href="https://github.com/jinyuliao/Tutorial_DialogueSystem">Tutorial_DialogueSystem</a></p>
 <p>In this part, we will create a dialogue widget which use DialogueSession asset as input to display dialogue on screen.</p>
 <a class=""
-               data-lightbox="group-068a2ea0-9e4b-48d6-b6e6-095ccfd84f19"
+               data-lightbox="group-f9e7e58c-a452-4278-a185-28230e3ad612"
                href="../../../_images/dialogue_session_to_screen1.png"
                title=""
                data-title=""
@@ -120,7 +121,7 @@
 <h2>Step 1</h2>
 <p>Create an UMG widget: UI_Dialogue, like this:</p>
 <a class=""
-               data-lightbox="group-8a8b696a-3f0b-4e04-8721-e86ff191424e"
+               data-lightbox="group-1bfd344a-f72b-49ef-8b22-5f9eaf2360e9"
                href="../../../_images/dialogue_widget_layout1.png"
                title=""
                data-title=""
@@ -145,7 +146,7 @@
 </ul>
 <p>bind MainText’s <em>Text</em> field to CurrentDialogueNode’s <em>Paragraph</em> property, like this:</p>
 <a class=""
-               data-lightbox="group-97feccbe-380d-458c-b5f8-cb21db1582a2"
+               data-lightbox="group-9eff9c91-c73c-45e0-a435-ff3f8b4cee88"
                href="../../../_images/dialogue_main_text_bind1.png"
                title=""
                data-title=""
@@ -159,7 +160,7 @@
 <h2>Step 3</h2>
 <p>Implement function: <em>StartSession</em></p>
 <a class=""
-               data-lightbox="group-8070af32-1bae-4553-abb9-b21b791a0de5"
+               data-lightbox="group-e5ae6deb-2b97-4e3d-951c-5815590e8811"
                href="../../../_images/start_session_impl1.png"
                title=""
                data-title=""
@@ -173,7 +174,7 @@
 <h2>Step 4</h2>
 <p>Implement function: <em>Next</em></p>
 <a class=""
-               data-lightbox="group-28b43075-aa35-4721-964d-62241b40de75"
+               data-lightbox="group-19e7d1a3-0f4e-4b67-b991-1824a8d4b38a"
                href="../../../_images/next_impl1.png"
                title=""
                data-title=""
@@ -192,7 +193,7 @@
 <h2>Step 6</h2>
 <p>Create a UMG widget: UI_HUD, layout it like this:</p>
 <a class=""
-               data-lightbox="group-a3482970-0c3d-4547-b573-5bfdf1cc7210"
+               data-lightbox="group-0508d706-8b1c-49b6-9549-07de5e7a6f28"
                href="../../../_images/hud_layout1.png"
                title=""
                data-title=""
@@ -203,7 +204,7 @@
                      alt=""/>
                 </a><p>create a bind for UI_Dialogue’s <em>Visibility</em>:</p>
 <a class=""
-               data-lightbox="group-37d5d425-147b-4c8b-bc94-59b4e2dfdc60"
+               data-lightbox="group-264a7d28-14a3-419b-b9f7-10296875ced8"
                href="../../../_images/dialogue_visibility_bind1.png"
                title=""
                data-title=""
@@ -217,7 +218,7 @@
 <h2>Step 7</h2>
 <p>Setup input action mapping: <em>Next</em></p>
 <a class=""
-               data-lightbox="group-e9bdf5c1-abf0-4ad2-949b-9526667584b1"
+               data-lightbox="group-0e6e193e-470a-4ed6-9a16-28ca51944ff4"
                href="../../../_images/next_input1.png"
                title=""
                data-title=""
@@ -228,7 +229,7 @@
                      alt=""/>
                 </a><p>create an UI_HUD widget, add it to viewport and setup for <em>Next</em> event:</p>
 <a class=""
-               data-lightbox="group-b965ba05-39de-4536-b62b-931ea922f97b"
+               data-lightbox="group-08b53c2b-4d7c-4fcb-b6ac-3c49d61109fd"
                href="../../../_images/controller_setup1.png"
                title=""
                data-title=""
@@ -242,7 +243,7 @@
 <h2>Step 8</h2>
 <p>Add a test trigger into your test map</p>
 <a class=""
-               data-lightbox="group-850ae473-d586-41fc-9449-c878a522ed66"
+               data-lightbox="group-57f228a1-ba98-431d-93b9-4566a85135a8"
                href="../../../_images/test_trigger1.png"
                title=""
                data-title=""
@@ -253,7 +254,7 @@
                      alt=""/>
                 </a><p>open <strong>Level Blueprint</strong>, setup BeginOverlap event like this:</p>
 <a class=""
-               data-lightbox="group-94c1b861-ee38-4613-be0f-43fee0dd5150"
+               data-lightbox="group-62edcee9-4fe0-4ac9-a3a9-4ea5e3bdac35"
                href="../../../_images/test_trigger_overlap1.png"
                title=""
                data-title=""
