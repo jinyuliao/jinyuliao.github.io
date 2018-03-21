@@ -1,0 +1,362 @@
+<!DOCTYPE html><!--[if lt IE 7]>      <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="https://www.facebook.com/2008/fbml" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <title>UE4 Dialogue System Part3 &mdash; Jinyu Liao&#39;s Blog</title>
+    <link rel="stylesheet" href="../../../_static/normalize.css" type="text/css">
+    <link rel="stylesheet" href="../../../_static/sphinx.css" type="text/css">
+    <link rel="stylesheet" href="../../../_static/main.css" type="text/css">
+        <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css">
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+    
+        <link rel="stylesheet" href="../../../_static/sphinxcontrib-images\LightBox2\lightbox2\css\lightbox.css" type="text/css" />
+    
+
+    
+        <link rel="stylesheet" href="../../../_static/sphinxcontrib-images\LightBox2\lightbox2\css\lightbox.css" type="text/css" /><link rel="shortcut icon" href="../../../_static/tinkerer.ico" /><!-- Load modernizr and JQuery -->
+        <script src="../../../_static/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.2.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../../_static/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+        <script src="../../../_static/plugins.js"></script>
+        <script src="../../../_static/main.js"></script>
+        <link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="UE4 Dialogue System Part2" href="../../../2017/12/15/ue4_dialogue_system_part2.html" /><link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.html" /><script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.6.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        SOURCELINK_SUFFIX: '.txt',
+        HAS_SOURCE:  true
+      };
+    </script><script type="text/javascript" src="../../../_static/underscore.js"></script><script type="text/javascript" src="../../../_static/doctools.js"></script><script type="text/javascript" src="../../../_static/sphinxcontrib-images\LightBox2\lightbox2\js\lightbox.min.js"></script><script type="text/javascript" src="../../../_static/disqus.js"></script><script type="text/javascript" src="../../../_static/google_analytics.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Adjusts document height if sidebar is taller
+            var documentwrapper = document.getElementsByTagName('article')[0];
+            var sidebar = document.getElementsByTagName('aside')[0];
+
+            if (sidebar.offsetHeight > documentwrapper.offsetHeight)
+            {
+                documentwrapper.style.minHeight = sidebar.offsetHeight + "px";
+            }
+
+            // Scroll to content if on small screen
+            if (screen.width < 480)
+            {
+                $(document).scrollTop(documentwrapper.offsetTop - 44);
+            }
+        });
+    </script></head>
+    <body role="document">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+      <div id="container"><div class="header-container">
+    <header class="wrapper clearfix" role="banner">
+        <div class="title">
+          <h1><a href="../../../index.html">Jinyu Liao&#39;s Blog</a></h1>
+          <h4></h4>
+        </div>
+        <nav role="navigation">
+          <ul>
+            <li class="main-nav">
+              <a href="../../../index.html">Home</a>
+            </li>
+            <li class="main-nav">
+              <a href="../../../pages/donate.html">Donate</a>
+            </li>
+            <li class="quicklink"><div class="rss">
+        <a href="../../../rss.html" title="Subscribe via RSS"><span class="fa fa-lg fa-rss"></span></a>
+    </div></li></ul>
+        </nav>
+    </header>
+</div>
+
+<div class="main-container" role="main"><div class="main wrapper body clearfix"><article>
+        <!--<ul class="related clearfix">
+            <li class="left"></li>
+            <li class="right"><a href="../../../2017/12/15/ue4_dialogue_system_part2.html">UE4 Dialogue System Part2</a> &raquo; </li>
+        </ul>-->
+        <div class="wy-nav-content">
+            <div class="rst-content">
+                <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+                        <div itemprop="articleBody">
+                            <div class="timestamp postmeta">
+            <span>March 20, 2018</span>
+        </div>
+    <div class="section" id="ue4-dialogue-system-part3">
+<h1>UE4 Dialogue System Part3</h1>
+<p><a class="reference external" href="https://jinyuliao.github.io/blog/html/2017/12/15/ue4_dialogue_system_part2.html">Part2</a></p>
+<p>In this part, we will create a dialogue widget which use DialogueSession asset as input to display dialogue on screen.</p>
+<a class=""
+               data-lightbox="group-068a2ea0-9e4b-48d6-b6e6-095ccfd84f19"
+               href="../../../_images/dialogue_session_to_screen1.png"
+               title=""
+               data-title=""
+               ><img src="../../../_images/dialogue_session_to_screen1.png"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a><div class="section" id="step-1">
+<h2>Step 1</h2>
+<p>Create an UMG widget: UI_Dialogue, like this:</p>
+<a class=""
+               data-lightbox="group-8a8b696a-3f0b-4e04-8721-e86ff191424e"
+               href="../../../_images/dialogue_widget_layout1.png"
+               title=""
+               data-title=""
+               ><img src="../../../_images/dialogue_widget_layout1.png"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a></div>
+<div class="section" id="step-2">
+<h2>Step 2</h2>
+<p>Create function: <em>StartSession</em> and <em>Next</em>.</p>
+<p>StartSession’s function signature:</p>
+<img alt="../../../_images/start_session_sign.png" src="../../../_images/start_session_sign.png" />
+<p>Next’s function signature:</p>
+<img alt="../../../_images/next_sign.png" src="../../../_images/next_sign.png" />
+<p>Create some variables:</p>
+<ul class="simple">
+<li>CurrentSession: DialogueSession(type)</li>
+<li>CurrentDialogueNode: DialogueSessionNode(type)</li>
+<li>NodeIndex: Integer(type)</li>
+</ul>
+<p>bind MainText’s <em>Text</em> field to CurrentDialogueNode’s <em>Paragraph</em> property, like this:</p>
+<a class=""
+               data-lightbox="group-97feccbe-380d-458c-b5f8-cb21db1582a2"
+               href="../../../_images/dialogue_main_text_bind1.png"
+               title=""
+               data-title=""
+               ><img src="../../../_images/dialogue_main_text_bind1.png"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a></div>
+<div class="section" id="step-3">
+<h2>Step 3</h2>
+<p>Implement function: <em>StartSession</em></p>
+<a class=""
+               data-lightbox="group-8070af32-1bae-4553-abb9-b21b791a0de5"
+               href="../../../_images/start_session_impl1.png"
+               title=""
+               data-title=""
+               ><img src="../../../_images/start_session_impl1.png"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a></div>
+<div class="section" id="step-4">
+<h2>Step 4</h2>
+<p>Implement function: <em>Next</em></p>
+<a class=""
+               data-lightbox="group-28b43075-aa35-4721-964d-62241b40de75"
+               href="../../../_images/next_impl1.png"
+               title=""
+               data-title=""
+               ><img src="../../../_images/next_impl1.png"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a></div>
+<div class="section" id="step-5">
+<h2>Step 5</h2>
+<p>Create a DialogueSession asset: Dialogue_Test</p>
+<img alt="../../../_images/test_dialogue_session.png" src="../../../_images/test_dialogue_session.png" />
+</div>
+<div class="section" id="step-6">
+<h2>Step 6</h2>
+<p>Create a UMG widget: UI_HUD, layout it like this:</p>
+<a class=""
+               data-lightbox="group-a3482970-0c3d-4547-b573-5bfdf1cc7210"
+               href="../../../_images/hud_layout1.png"
+               title=""
+               data-title=""
+               ><img src="../../../_images/hud_layout1.png"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a><p>create a bind for UI_Dialogue’s <em>Visibility</em>:</p>
+<a class=""
+               data-lightbox="group-37d5d425-147b-4c8b-bc94-59b4e2dfdc60"
+               href="../../../_images/dialogue_visibility_bind1.png"
+               title=""
+               data-title=""
+               ><img src="../../../_images/dialogue_visibility_bind1.png"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a></div>
+<div class="section" id="step-7">
+<h2>Step 7</h2>
+<p>Setup input action mapping: <em>Next</em></p>
+<a class=""
+               data-lightbox="group-e9bdf5c1-abf0-4ad2-949b-9526667584b1"
+               href="../../../_images/next_input1.png"
+               title=""
+               data-title=""
+               ><img src="../../../_images/next_input1.png"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a><p>create an UI_HUD widget, add it to viewport and setup for <em>Next</em> event:</p>
+<a class=""
+               data-lightbox="group-b965ba05-39de-4536-b62b-931ea922f97b"
+               href="../../../_images/controller_setup1.png"
+               title=""
+               data-title=""
+               ><img src="../../../_images/controller_setup1.png"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a></div>
+<div class="section" id="step-8">
+<h2>Step 8</h2>
+<p>Add a test trigger into your test map</p>
+<a class=""
+               data-lightbox="group-850ae473-d586-41fc-9449-c878a522ed66"
+               href="../../../_images/test_trigger1.png"
+               title=""
+               data-title=""
+               ><img src="../../../_images/test_trigger1.png"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a><p>open <strong>Level Blueprint</strong>, setup BeginOverlap event like this:</p>
+<a class=""
+               data-lightbox="group-94c1b861-ee38-4613-be0f-43fee0dd5150"
+               href="../../../_images/test_trigger_overlap1.png"
+               title=""
+               data-title=""
+               ><img src="../../../_images/test_trigger_overlap1.png"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a></div>
+<div class="section" id="step-9">
+<h2>Step 9</h2>
+<p>Play. move character to the position of test trigger, now you can see the dialogue widget. press <strong>N</strong> goto the next paragraph.</p>
+</div>
+<div class="section" id="done">
+<h2>Done</h2>
+<p>That’s all in this part. In the next part, we wiil support dialoguer information such as: name, portrait image.</p>
+</div>
+</div>
+
+    <div class="postmeta">
+        <div class="author">
+            <span>Posted by Jinyu Liao</span>
+        </div>
+        <div class="categories">
+            <span>
+                Filed under:
+                <a href="../../../categories/ue4_dialogue_system.html">UE4 Dialogue System</a></span>
+        </div>
+        <div class="tags">
+            <span>
+                Tags:
+                <a href="../../../tags/ue4.html">UE4</a>, <a href="../../../tags/tutorial.html">Tutorial</a></span>
+        </div>
+        </div>
+    <div id="disqus_thread"></div><script type="text/javascript">    var disqus_shortname = "jinyuliao";    var disqus_identifier = "2018/03/20/ue4_dialogue_system_part3";    disqus_thread();</script><noscript>Please enable JavaScript to view the    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                        </div>
+                        <div class="articleComments">
+                            
+                        </div>
+                    </div>
+                    <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Jinyu Liao.
+    
+    <div class="column-logo">
+        <ul class="social">
+            <li><a href="https://github.com/jinyuliao" rel="noopener noreferrer"><span class="icon github"></span></a></li>
+            <li><a href="https://twitter.com/jinyuliao" rel="noopener noreferrer"><span class="icon twitter"></span></a></li>
+        </ul>
+    </div>
+    </p>
+  </div>
+</footer>
+
+                </div>
+            </div>
+            <!--<ul class="related clearfix">
+            <li class="left"></li>
+            <li class="right"><a href="../../../2017/12/15/ue4_dialogue_system_part2.html">UE4 Dialogue System Part2</a> &raquo; </li>
+        </ul>--></article><aside class="sidebar"><section><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div></section><section><div class="widget">
+    <h3>Recent Posts</h3>
+    <ul><li>
+            <a href="#">UE4 Dialogue System Part3</a>
+        </li><li>
+            <a href="../../../2017/12/15/ue4_dialogue_system_part2.html">UE4 Dialogue System Part2</a>
+        </li><li>
+            <a href="../../../2017/12/15/ue4_dialogue_system_part1.html">UE4 Dialogue System Part1</a>
+        </li></ul>
+</div>
+</section><section><div class="widget">
+    <h3>Categories</h3>
+    <ul><li><a href="../../../categories/ue4_dialogue_system.html">UE4 Dialogue System</a> (3)</li></ul>
+</div></section><section><div class="widget">
+    <h3>Tags</h3><a href="../../../tags/tutorial.html">Tutorial</a> (3), <a href="../../../tags/ue4.html">UE4</a> (3)</div></section></aside></div> <!-- #main --></div> <!-- #main-container -->
+
+        <div class="footer-container" role="contentinfo">
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+			$(this).parent().children().not(".header").slideToggle(200);
+            //$(this).parent().children().not(".header").toggle(200);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+</div> <!-- footer-container -->
+
+      </div> <!--! end of #container --><!--[if lt IE 7 ]>
+          <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+          <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+        <![endif]-->
+    </body>
+</html>

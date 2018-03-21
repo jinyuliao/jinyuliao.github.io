@@ -318,10 +318,13 @@ That’s all in this part, you have created a new asset type [#f1]_ **DialogueSe
 
 In the next part, we will dive into blueprint :)
 
+Part3_
+
 .. [#f1] a new graph type with GenericGraph editor
 
 .. _Part1: https://jinyuliao.github.io/blog/html/2017/12/15/ue4_dialogue_system_part1.html
 .. _tutorial: https://wiki.unrealengine.com/Creating_an_Editor_Module
+.. _Part3: https://jinyuliao.github.io/blog/html/2018/03/20/ue4_dialogue_system_part3.html
 
 .. author:: default
 .. categories:: UE4 Dialogue System

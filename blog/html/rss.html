@@ -5,8 +5,86 @@
         <link>https://jinyuliao.github.io/blog/html/</link>
         <description></description>
         <language>en-us</language>
-        <pubDate>Fri, 15 Dec 2017 00:00:00 +0800</pubDate>
+        <pubDate>Tue, 20 Mar 2018 00:00:00 +0800</pubDate>
         
+        <item>
+            <link>https://jinyuliao.github.io/blog/html/2018/03/20/ue4_dialogue_system_part3.html</link>
+            <guid>https://jinyuliao.github.io/blog/html/2018/03/20/ue4_dialogue_system_part3.html</guid>
+            <title><![CDATA[UE4 Dialogue System Part3]]></title>
+            <description><![CDATA[<h1>UE4 Dialogue System Part3</h1>
+<p><a class="reference external" href="https://jinyuliao.github.io/blog/html/2017/12/15/ue4_dialogue_system_part2.html">Part2</a></p>
+<p>In this part, we will create a dialogue widget which use DialogueSession asset as input to display dialogue on screen.</p>
+<a class="" data-lightbox="group-068a2ea0-9e4b-48d6-b6e6-095ccfd84f19" href="https://jinyuliao.github.io/blog/html/_images/dialogue_session_to_screen1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/dialogue_session_to_screen1.png" class="" width="100%" height="auto" alt=""/>
+                </a><div class="section" id="step-1">
+<h2>Step 1</h2>
+<p>Create an UMG widget: UI_Dialogue, like this:</p>
+<a class="" data-lightbox="group-8a8b696a-3f0b-4e04-8721-e86ff191424e" href="https://jinyuliao.github.io/blog/html/_images/dialogue_widget_layout1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/dialogue_widget_layout1.png" class="" width="100%" height="auto" alt=""/>
+                </a></div>
+<div class="section" id="step-2">
+<h2>Step 2</h2>
+<p>Create function: <em>StartSession</em> and <em>Next</em>.</p>
+<p>StartSession’s function signature:</p>
+<img alt="../../../_images/start_session_sign.png" src="https://jinyuliao.github.io/blog/html/_images/start_session_sign.png"/>
+<p>Next’s function signature:</p>
+<img alt="../../../_images/next_sign.png" src="https://jinyuliao.github.io/blog/html/_images/next_sign.png"/>
+<p>Create some variables:</p>
+<ul class="simple">
+<li>CurrentSession: DialogueSession(type)</li>
+<li>CurrentDialogueNode: DialogueSessionNode(type)</li>
+<li>NodeIndex: Integer(type)</li>
+</ul>
+<p>bind MainText’s <em>Text</em> field to CurrentDialogueNode’s <em>Paragraph</em> property, like this:</p>
+<a class="" data-lightbox="group-97feccbe-380d-458c-b5f8-cb21db1582a2" href="https://jinyuliao.github.io/blog/html/_images/dialogue_main_text_bind1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/dialogue_main_text_bind1.png" class="" width="100%" height="auto" alt=""/>
+                </a></div>
+<div class="section" id="step-3">
+<h2>Step 3</h2>
+<p>Implement function: <em>StartSession</em></p>
+<a class="" data-lightbox="group-8070af32-1bae-4553-abb9-b21b791a0de5" href="https://jinyuliao.github.io/blog/html/_images/start_session_impl1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/start_session_impl1.png" class="" width="100%" height="auto" alt=""/>
+                </a></div>
+<div class="section" id="step-4">
+<h2>Step 4</h2>
+<p>Implement function: <em>Next</em></p>
+<a class="" data-lightbox="group-28b43075-aa35-4721-964d-62241b40de75" href="https://jinyuliao.github.io/blog/html/_images/next_impl1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/next_impl1.png" class="" width="100%" height="auto" alt=""/>
+                </a></div>
+<div class="section" id="step-5">
+<h2>Step 5</h2>
+<p>Create a DialogueSession asset: Dialogue_Test</p>
+<img alt="../../../_images/test_dialogue_session.png" src="https://jinyuliao.github.io/blog/html/_images/test_dialogue_session.png"/>
+</div>
+<div class="section" id="step-6">
+<h2>Step 6</h2>
+<p>Create a UMG widget: UI_HUD, layout it like this:</p>
+<a class="" data-lightbox="group-a3482970-0c3d-4547-b573-5bfdf1cc7210" href="https://jinyuliao.github.io/blog/html/_images/hud_layout1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/hud_layout1.png" class="" width="100%" height="auto" alt=""/>
+                </a><p>create a bind for UI_Dialogue’s <em>Visibility</em>:</p>
+<a class="" data-lightbox="group-37d5d425-147b-4c8b-bc94-59b4e2dfdc60" href="https://jinyuliao.github.io/blog/html/_images/dialogue_visibility_bind1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/dialogue_visibility_bind1.png" class="" width="100%" height="auto" alt=""/>
+                </a></div>
+<div class="section" id="step-7">
+<h2>Step 7</h2>
+<p>Setup input action mapping: <em>Next</em></p>
+<a class="" data-lightbox="group-e9bdf5c1-abf0-4ad2-949b-9526667584b1" href="https://jinyuliao.github.io/blog/html/_images/next_input1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/next_input1.png" class="" width="100%" height="auto" alt=""/>
+                </a><p>create an UI_HUD widget, add it to viewport and setup for <em>Next</em> event:</p>
+<a class="" data-lightbox="group-b965ba05-39de-4536-b62b-931ea922f97b" href="https://jinyuliao.github.io/blog/html/_images/controller_setup1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/controller_setup1.png" class="" width="100%" height="auto" alt=""/>
+                </a></div>
+<div class="section" id="step-8">
+<h2>Step 8</h2>
+<p>Add a test trigger into your test map</p>
+<a class="" data-lightbox="group-850ae473-d586-41fc-9449-c878a522ed66" href="https://jinyuliao.github.io/blog/html/_images/test_trigger1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/test_trigger1.png" class="" width="100%" height="auto" alt=""/>
+                </a><p>open <strong>Level Blueprint</strong>, setup BeginOverlap event like this:</p>
+<a class="" data-lightbox="group-94c1b861-ee38-4613-be0f-43fee0dd5150" href="https://jinyuliao.github.io/blog/html/_images/test_trigger_overlap1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/test_trigger_overlap1.png" class="" width="100%" height="auto" alt=""/>
+                </a></div>
+<div class="section" id="step-9">
+<h2>Step 9</h2>
+<p>Play. move character to the position of test trigger, now you can see the dialogue widget. press <strong>N</strong> goto the next paragraph.</p>
+</div>
+<div class="section" id="done">
+<h2>Done</h2>
+<p>That’s all in this part. In the next part, we wiil support dialoguer information such as: name, portrait image.</p>
+</div>
+]]></description>
+            <category><![CDATA[ UE4 Dialogue System ]]></category>
+             <pubDate>Tue, 20 Mar 2018 00:00:00 +0800</pubDate>
+        </item>
+    
         <item>
             <link>https://jinyuliao.github.io/blog/html/2017/12/15/ue4_dialogue_system_part2.html</link>
             <guid>https://jinyuliao.github.io/blog/html/2017/12/15/ue4_dialogue_system_part2.html</guid>
@@ -286,12 +364,13 @@ you can’t pass the Shipping build if your game depends on any editor module.</
 <div class="section" id="step-9">
 <h2>Step 9</h2>
 <p>Compile the solution, open the editor if compile succeeded. right click in your content browser, you can create DialogueSession asset now.</p>
-<a class="" data-lightbox="group-84c07d37-0c17-46f4-9590-7297e0cdbcc1" href="https://jinyuliao.github.io/blog/html/_images/dialogue_session_asset1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/dialogue_session_asset1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-69471047-64f0-47a9-bda3-b57e0c4cb774" href="https://jinyuliao.github.io/blog/html/_images/dialogue_session_asset1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/dialogue_session_asset1.png" class="" width="100%" height="auto" alt=""/>
                 </a></div>
 <div class="section" id="done">
 <h2>Done</h2>
 <p>That’s all in this part, you have created a new asset type <a class="footnote-reference" href="#f1" id="id1">[1]</a> <strong>DialogueSession</strong> and extended GenericGraph’s node and edge type.</p>
 <p>In the next part, we will dive into blueprint :)</p>
+<p><a class="reference external" href="https://jinyuliao.github.io/blog/html/2018/03/20/ue4_dialogue_system_part3.html">Part3</a></p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label"/><col/></colgroup>
 <tbody valign="top">
@@ -324,7 +403,7 @@ you can’t pass the Shipping build if your game depends on any editor module.</
 <div class="section" id="step-1">
 <h2>Step 1</h2>
 <p>Create a blueprint project with the TopDown template.</p>
-<a class="" data-lightbox="group-a6243deb-0f48-4d1a-8a3e-f99e89821e4f" href="https://jinyuliao.github.io/blog/html/_images/create_project1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/create_project1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-93ac051c-5725-4875-a2df-da78fbaedbe2" href="https://jinyuliao.github.io/blog/html/_images/create_project1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/create_project1.png" class="" width="100%" height="auto" alt=""/>
                 </a></div>
 <div class="section" id="step-2">
 <h2>Step 2</h2>
@@ -336,9 +415,9 @@ you can’t pass the Shipping build if your game depends on any editor module.</
 <p>In your editor, click “File-&gt;New C++ Class”.</p>
 <img alt="../../../_images/new_cpp.png" src="https://jinyuliao.github.io/blog/html/_images/new_cpp.png"/>
 <p>Click “Next”.</p>
-<a class="" data-lightbox="group-eada58e1-1c26-4ff1-b804-7fe2e05979a5" href="https://jinyuliao.github.io/blog/html/_images/class_wizard_011.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/class_wizard_011.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-fdb3628b-c09c-43ed-a964-31ae34812464" href="https://jinyuliao.github.io/blog/html/_images/class_wizard_011.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/class_wizard_011.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>Set the class name to “Placeholder”</p>
-<a class="" data-lightbox="group-fbf6018a-7f11-47bf-8d1f-9d572b9c8737" href="https://jinyuliao.github.io/blog/html/_images/class_wizard_021.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/class_wizard_021.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-2f60fa70-b352-4da8-a334-7c9396bf2f47" href="https://jinyuliao.github.io/blog/html/_images/class_wizard_021.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/class_wizard_021.png" class="" width="100%" height="auto" alt=""/>
                 </a><p>Click “Create Class”.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -353,7 +432,7 @@ you can’t pass the Shipping build if your game depends on any editor module.</
 <div class="section" id="step-4">
 <h2>Step 4</h2>
 <p>If compile succeeded, open your editor again, right click in your content browser, you can create GenericGraph asset now.</p>
-<a class="" data-lightbox="group-67a4deff-8353-406a-98c5-f35126d711b3" href="https://jinyuliao.github.io/blog/html/_images/generic_graph_asset1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/generic_graph_asset1.png" class="" width="100%" height="auto" alt=""/>
+<a class="" data-lightbox="group-89027122-839d-4b7d-9367-9b6819080d3c" href="https://jinyuliao.github.io/blog/html/_images/generic_graph_asset1.png" title="" data-title=""><img src="https://jinyuliao.github.io/blog/html/_images/generic_graph_asset1.png" class="" width="100%" height="auto" alt=""/>
                 </a></div>
 <div class="section" id="done">
 <h2>Done</h2>
